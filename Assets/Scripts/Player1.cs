@@ -9,7 +9,7 @@ public class Player1 : MonoBehaviour
     public HeroKnightActions actions;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         actions = GetComponent<HeroKnightActions>();
     }
@@ -56,7 +56,8 @@ public class Player1 : MonoBehaviour
             //Attack
             if(Input.GetMouseButtonDown(0) && actions.m_timeSinceAttack > 0.25f)
             {
-                actions.attack(enemy);
+                
+                actions.attackEnemy(enemy);
                 // return;
             }
             

@@ -2633,14 +2633,14 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 1077749722}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2041475950
+--- !u!114 &2041475949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041475943}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7682a30cb612cf41876564c5302dd2f, type: 3}
   m_Name: 
@@ -2653,4 +2653,56 @@ MonoBehaviour:
   m_facingDirection: 1
   enemyLayer:
     serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &2041475950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041475943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6906e69e0dc8d4d90a89f99a2d9dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions: {fileID: 0}
+--- !u!114 &2041475951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041475943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bace5808f35141241bbd61db1b0bf66f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_speed: 4
+  m_jumpForce: 7.5
+  m_rollForce: 6
+  m_noBlood: 0
+  m_slideDust: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
     m_Bits: 512
+  healthBar: {fileID: 253618991}
+  m_animator: {fileID: 2041475947}
+  m_body2d: {fileID: 0}
+  m_hitbox: {fileID: 0}
+  m_groundSensor: {fileID: 0}
+  m_grounded: 0
+  m_rolling: 0
+  m_crouch: 0
+  m_facingDirection: 1
+  m_currentAttack: 0
+  m_timeSinceAttack: 0
+  m_delayToIdle: 0
+  attackDamage: 15
+  m_swordHitBox: {fileID: 0}
+  maxHealth: 100
+  currentHealth: 0
+  finished: 0
+  m_knockback: 2
+  sword_height: 0

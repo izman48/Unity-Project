@@ -128,7 +128,10 @@ public class HeroKnightActions : MonoBehaviour
         m_animator.SetBool("IdleBlock", false);
     }
 
-    public void attack(Collider2D enemy) {
+    public void attackPlayer(Collider2D enemy) {
+        
+
+        
         m_currentAttack++;
 
         // Loop back to one after third attack
@@ -141,7 +144,48 @@ public class HeroKnightActions : MonoBehaviour
 
         if (enemy) {
             Debug.Log("We hit " + enemy.name);
-            Enemy e = enemy.GetComponent<Enemy>();
+            Player1 player = enemy.GetComponent<Player1>();
+            HeroKnightActions e = player.actions;
+            if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
+                m_animator.SetTrigger("Hurt");
+                knockback();
+                m_timeSinceAttack = 0.0f;
+                return;
+            } else {
+                e.TakeDamage(attackDamage);
+                e.m_animator.SetBool("IdleBlock", false);
+                m_rolling = false;
+            }
+            
+        }
+        // Call one of three attack animations "Attack1", "Attack2", "Attack3"
+        m_animator.SetTrigger("Attack" + m_currentAttack);
+
+        // Reset timer
+        m_timeSinceAttack = 0.0f;
+        if (m_grounded)
+                m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
+    }
+
+    public void attackEnemy(Collider2D enemy) {
+
+        
+
+        m_currentAttack++;
+
+        // Loop back to one after third attack
+        if (m_currentAttack > 3)
+            m_currentAttack = 1;
+
+        // Reset Attack combo if time since last attack is too large
+        if (m_timeSinceAttack > 1.0f)
+            m_currentAttack = 1;
+
+        if (enemy) {
+            Debug.Log("We hit " + enemy.name);
+            Player2 player = enemy.GetComponent<Player2>();
+
+            HeroKnightActions e = player.actions;
             if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
                 m_animator.SetTrigger("Hurt");
                 knockback();

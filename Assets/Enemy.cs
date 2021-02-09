@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
 
         m_timeSinceAttack += Time.deltaTime;
         m_knockback += Time.deltaTime;
-        
+        mode = 1;
         // Debug.Log(m_knockback);
 
         if (m_knockback < 0.5f ) {

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Player2 : MonoBehaviour
 {
-    HeroKnightActions actions;
+    public HeroKnightActions actions;
     PlayerActions controls;
 
     // Start is called before the first frame update
@@ -20,18 +20,20 @@ public class Player2 : MonoBehaviour
     void LateUpdate()
     {
         Collider2D enemy = Physics2D.OverlapBox(actions.m_swordHitBox.position, actions.m_swordHitBox.localScale, 0.0f, actions.enemyLayer);
+        actions.m_animator.SetTrigger("Block");
+        actions.m_animator.SetBool("IdleBlock", true);
         // -- Handle input and movement --
-        float inputX = Input.GetAxis("Horizontal");
+        // float inputX = Input.GetAxis("Horizontal");
 
-        // Swap direction of sprite depending on walk direction
-        actions.faceDirection(inputX);
+        // // Swap direction of sprite depending on walk direction
+        // actions.faceDirection(inputX);
 
-        // Move
-        if (!actions.m_rolling && actions.m_timeSinceAttack > 0.25f){
-            // Debug.Log(m_knockback);
-            actions.m_body2d.velocity = new Vector2(inputX * actions.m_speed, actions.m_body2d.velocity.y);
-        }
-
+        // // Move
+        // if (!actions.m_rolling && actions.m_timeSinceAttack > 0.25f){
+        //     // Debug.Log(m_knockback);
+        //     actions.m_body2d.velocity = new Vector2(inputX * actions.m_speed, actions.m_body2d.velocity.y);
+        // }
+/*
         //Death
         if (Input.GetKeyDown("e"))
         {
@@ -58,7 +60,7 @@ public class Player2 : MonoBehaviour
             //Attack
             if(Input.GetMouseButtonDown(0) && actions.m_timeSinceAttack > 0.25f)
             {
-                actions.attack(enemy);
+                actions.attackPlayer(enemy);
                 // return;
             }
             
@@ -110,7 +112,7 @@ public class Player2 : MonoBehaviour
             }
 
         }
-        
+        */
         // if grounded and blocking or crouching don't move
         if (actions.m_grounded && (actions.m_animator.GetBool("IdleBlock") || actions.m_animator.GetBool("Crouch") )){
             // Debug.Log(m_animator.GetBool("Crouch") );
