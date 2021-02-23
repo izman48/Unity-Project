@@ -30,19 +30,23 @@ public class HeroKnightActions : MonoBehaviour
     public int                 currentHealth;
     public bool                finished;
     public float               m_knockback = 2.0f;
+    public float               m_knockback_cooldown = 0.5f;
     public float sword_height;
+    Player player;
     // Start is called before the first frame update
     void Start()
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_hitbox = GetComponent<BoxCollider2D>();
+        player = GetComponent<Player>();
         m_swordHitBox = transform.Find("SwordHitBox").transform;
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
         healthBar.SetMaxHealth(maxHealth); 
         finished = false;
         currentHealth = maxHealth;
         sword_height = 1.05f;
+        faceDirection(m_facingDirection);
     }
 
     // Update is called once per frame
@@ -51,6 +55,8 @@ public class HeroKnightActions : MonoBehaviour
         if (m_body2d.position.y <= -5.0f) {
             currentHealth = 0;
             healthBar.SetHealth(currentHealth);
+            Debug.Log(player.playerID);
+            StartCoroutine(DieRoutine(player.playerID));
         }
 
         m_timeSinceAttack += Time.deltaTime;
@@ -62,7 +68,7 @@ public class HeroKnightActions : MonoBehaviour
 
         checkFalling();
 
-        if (m_rolling || m_knockback < 0.5f ) {
+        if (m_rolling || m_knockback < m_knockback_cooldown ) {
             m_body2d.isKinematic = true;
             return;
         }
@@ -74,7 +80,8 @@ public class HeroKnightActions : MonoBehaviour
         
     }
 
-    public void knockback() {
+    public void knockback(int playerNum) {
+        TakeDamage(attackDamage/4, playerNum);
         m_body2d.velocity = new Vector2(m_facingDirection*-5, 1);
         m_knockback = 0.0f;
     }
@@ -149,11 +156,11 @@ public class HeroKnightActions : MonoBehaviour
             HeroKnightActions e = player.actions;
             if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
                 m_animator.SetTrigger("Hurt");
-                knockback();
+                knockback(2);
                 m_timeSinceAttack = 0.0f;
                 return;
             } else {
-                e.TakeDamage(attackDamage, 1);
+                e.TakeDamage(attackDamage, 1); // how much damage and who is taking it
                 e.m_animator.SetBool("IdleBlock", false);
                 m_rolling = false;
                 // if (e.currentHealth <= 0) {
@@ -193,11 +200,11 @@ public class HeroKnightActions : MonoBehaviour
             HeroKnightActions e = player.actions;
             if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
                 m_animator.SetTrigger("Hurt");
-                knockback();
+                knockback(1);
                 m_timeSinceAttack = 0.0f;
                 return;
             } else {
-                e.TakeDamage(attackDamage, 2);
+                e.TakeDamage(attackDamage, 2); // how much damage and who is taking it
                 e.m_animator.SetBool("IdleBlock", false);
                 m_rolling = false;
                 // if (e.currentHealth <= 0) {
@@ -274,8 +281,8 @@ public class HeroKnightActions : MonoBehaviour
 
     IEnumerator DieRoutine(int playerNum)
     {
-        if (playerNum == 2) {playerNum = 1;} else {playerNum = 2;}
         Debug.Log("DEAD");
+        if (playerNum == 2) {playerNum = 1;} else {playerNum = 2;}
         m_animator.SetBool("noBlood", m_noBlood);
         m_animator.SetTrigger("Death");
         this.enabled = false;

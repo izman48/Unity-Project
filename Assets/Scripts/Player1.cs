@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+// using UnityEngine.Experimental.Input;
 
 
-public class Player1 : MonoBehaviour
+public class Player1 : MonoBehaviour, Player
 {
+    public int playerID {get {return 1;}}
     public HeroKnightActions actions;
+    // public PlayerActions controls;
 
     // Start is called before the first frame update
     void Awake()
@@ -19,7 +21,10 @@ public class Player1 : MonoBehaviour
     {
         Collider2D enemy = Physics2D.OverlapBox(actions.m_swordHitBox.position, actions.m_swordHitBox.localScale, 0.0f, actions.enemyLayer);
         // -- Handle input and movement --
-        float inputX = Input.GetAxis("Horizontal");
+        float inputX = Input.GetAxis("Horizontal1");
+
+        // Debug.Log(inputX);
+        // Debug.Log("reached");
 
         // Swap direction of sprite depending on walk direction
         actions.faceDirection(inputX);
@@ -117,4 +122,5 @@ public class Player1 : MonoBehaviour
         }
 
     }
+
 }

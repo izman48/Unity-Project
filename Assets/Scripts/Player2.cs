@@ -4,16 +4,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class Player2 : MonoBehaviour
+public class Player2 : MonoBehaviour, Player
 {
+    public int playerID {get {return 2;}}
     public HeroKnightActions actions;
-    PlayerActions controls;
+    // PlayerActions controls;
 
     // Start is called before the first frame update
     void Awake()
     {
         actions = GetComponent<HeroKnightActions>();
-        controls = new PlayerActions();
+        // controls = new PlayerActions();
     }
 
     // Update is called once per frame
@@ -23,69 +24,69 @@ public class Player2 : MonoBehaviour
         // actions.m_animator.SetTrigger("Block");
         // actions.m_animator.SetBool("IdleBlock", true);
         // -- Handle input and movement --
-        // float inputX = Input.GetAxis("Horizontal");
+        float inputX = Input.GetAxis("Horizontal2");
 
-        // // Swap direction of sprite depending on walk direction
-        // actions.faceDirection(inputX);
+        // Swap direction of sprite depending on walk direction
+        actions.faceDirection(inputX);
 
-        // // Move
-        // if (!actions.m_rolling && actions.m_timeSinceAttack > 0.25f){
-        //     // Debug.Log(m_knockback);
-        //     actions.m_body2d.velocity = new Vector2(inputX * actions.m_speed, actions.m_body2d.velocity.y);
-        // }
-/*
+        // Move
+        if (!actions.m_rolling && actions.m_timeSinceAttack > 0.25f){
+            // Debug.Log(m_knockback);
+            actions.m_body2d.velocity = new Vector2(inputX * actions.m_speed, actions.m_body2d.velocity.y);
+        }
+
         //Death
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("p"))
         {
             actions.m_animator.SetBool("noBlood", actions.m_noBlood);
             actions.m_animator.SetTrigger("Death");
         }
             
         //Hurt
-        else if (Input.GetKeyDown("q"))
+        else if (Input.GetKeyDown("o"))
             actions.m_animator.SetTrigger("Hurt");
 
         // Block
-        else if (Input.GetMouseButtonDown(1) && !actions.m_animator.GetBool("Crouch"))
+        else if (Input.GetKeyDown("k") && !actions.m_animator.GetBool("Crouch"))
         {
             actions.block();
         }
 
-        else if (Input.GetMouseButtonUp(1)){
+        else if (Input.GetKeyUp("k")){
             actions.unblock();
         }
         
         else if (!actions.m_animator.GetBool("IdleBlock")) {
 
             //Attack
-            if(Input.GetMouseButtonDown(0) && actions.m_timeSinceAttack > 0.25f)
+            if(Input.GetKeyDown("j") && actions.m_timeSinceAttack > 0.25f)
             {
                 actions.attackPlayer(enemy);
                 // return;
             }
             
             //Crouch
-            else if (Input.GetKeyDown("s") && actions.m_grounded) {
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && actions.m_grounded) {
                 actions.crouch();
                     
             }
-            else if (Input.GetKeyUp("s")) {
+            else if (Input.GetKeyUp(KeyCode.DownArrow)) {
                 actions.uncrouch();
             }
 
             // Roll
-            else if (Input.GetKeyDown("left shift") && !actions.m_rolling)
+            else if (Input.GetKeyDown("right shift") && !actions.m_rolling)
             {
                 actions.roll();
             }
 
-            else if (Input.GetKeyDown("left shift")) {
+            else if (Input.GetKeyDown("right shift")) {
                 actions.uncrouch();
             }
                 
 
             //Jump
-            else if (Input.GetKeyDown("space") && actions.m_grounded)
+            else if (Input.GetKeyDown(KeyCode.Keypad0) && actions.m_grounded)
             {
                 actions.jump();    
             }
@@ -112,7 +113,7 @@ public class Player2 : MonoBehaviour
             }
 
         }
-        */
+        
         // if grounded and blocking or crouching don't move
         if (actions.m_grounded && (actions.m_animator.GetBool("IdleBlock") || actions.m_animator.GetBool("Crouch") )){
             // Debug.Log(m_animator.GetBool("Crouch") );

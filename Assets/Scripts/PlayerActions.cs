@@ -19,7 +19,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
             ""id"": ""4b054049-f7c0-47ad-8e96-ccb6fa29f1b7"",
             ""actions"": [
                 {
-                    ""name"": ""Left"",
+                    ""name"": ""MovePlayer1"",
                     ""type"": ""Button"",
                     ""id"": ""1d2058a7-5170-4aae-befa-4e534b0c5643"",
                     ""expectedControlType"": ""Button"",
@@ -27,15 +27,15 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Right"",
+                    ""name"": ""MovePlayer2"",
                     ""type"": ""Button"",
-                    ""id"": ""e8b89819-8317-4122-acca-4766dbf46e87"",
+                    ""id"": ""9b0c883b-f424-4846-809a-8498b9da151d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""Jump1"",
                     ""type"": ""Button"",
                     ""id"": ""38595190-d466-485d-be94-e4e8d08293e7"",
                     ""expectedControlType"": ""Button"",
@@ -43,7 +43,15 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Crouch"",
+                    ""name"": ""Jump2"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ba1b29d-db10-42a1-a30b-d1f07fab99a0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Crouch1"",
                     ""type"": ""Button"",
                     ""id"": ""d0bab5a7-6f99-4746-a75d-d6b532915c2f"",
                     ""expectedControlType"": ""Button"",
@@ -51,7 +59,15 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""Crouch2"",
+                    ""type"": ""Button"",
+                    ""id"": ""8287f945-2292-4687-98e8-478395e473fe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Attack1"",
                     ""type"": ""Button"",
                     ""id"": ""c116fb6d-9edb-422d-bb4e-78a62e5898ed"",
                     ""expectedControlType"": ""Button"",
@@ -59,7 +75,15 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Block"",
+                    ""name"": ""Attack2"",
+                    ""type"": ""Button"",
+                    ""id"": ""4cd34106-39ed-4645-a50d-663ff2496587"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Block1"",
                     ""type"": ""Button"",
                     ""id"": ""8074cd8b-8d55-4e52-a18c-738f495c1aaf"",
                     ""expectedControlType"": ""Button"",
@@ -67,9 +91,25 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Roll"",
+                    ""name"": ""Block2"",
+                    ""type"": ""Button"",
+                    ""id"": ""442c4fe7-7c47-44ea-b28d-4c69e3d7a82f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Roll1"",
                     ""type"": ""Button"",
                     ""id"": ""51169759-01df-4199-a1b0-9ae2dd2166e0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Roll2"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5111f10-511c-43f6-8106-ddf7a4b40e56"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -78,45 +118,12 @@ public class @PlayerActions : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""697da83a-b4c1-4eb4-be91-e0976282150c"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Left"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1ba6953a-5153-49bc-8880-37e36f8093a6"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Right"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""19ecb0e6-5c0c-49f5-a0ce-0d0cea2637f6"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""170a2532-d5fc-43e1-b32d-a320a4483d3d"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Crouch"",
+                    ""action"": ""Crouch1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -127,7 +134,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack"",
+                    ""action"": ""Attack1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -138,35 +145,178 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Block"",
+                    ""action"": ""Block1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""414c5617-5aa8-47c4-97ca-d81c78aaf7d9"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Roll"",
+                    ""action"": ""Roll1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""id"": ""c09041d3-8a73-4bd1-8c8f-b1754d7a004e"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovePlayer1"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""3eccd5cf-ba63-495d-b017-dae7a91415ca"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""MovePlayer1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8889fbfa-fc25-4ddf-90cf-fd07a00c23fd"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""MovePlayer1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19ecb0e6-5c0c-49f5-a0ce-0d0cea2637f6"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Jump1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Move"",
+                    ""id"": ""88466b8a-75a3-4328-b593-0af0a9f020b0"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""MovePlayer2"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""d1f508aa-787b-4b93-8025-c986fab9790f"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""MovePlayer2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""e6f49b85-0949-453c-b6c3-95b4c49fbe7f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""MovePlayer2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8b15dfb-44a1-4590-84af-7af094214031"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Jump2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30cdfb89-5628-497b-a929-75af6e482f48"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Crouch2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f9ac0e1-7016-4637-92b2-363803f5045b"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Attack2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""475ffc97-7ae9-4936-925a-3f5596f98f73"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Block2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c938131-494f-4973-a89b-c3e0abc0fa0e"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyBoard"",
+                    ""action"": ""Roll2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""KeyBoard"",
+            ""bindingGroup"": ""KeyBoard"",
+            ""devices"": []
+        }
+    ]
 }");
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
-        m_Gameplay_Left = m_Gameplay.FindAction("Left", throwIfNotFound: true);
-        m_Gameplay_Right = m_Gameplay.FindAction("Right", throwIfNotFound: true);
-        m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
-        m_Gameplay_Crouch = m_Gameplay.FindAction("Crouch", throwIfNotFound: true);
-        m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
-        m_Gameplay_Block = m_Gameplay.FindAction("Block", throwIfNotFound: true);
-        m_Gameplay_Roll = m_Gameplay.FindAction("Roll", throwIfNotFound: true);
+        m_Gameplay_MovePlayer1 = m_Gameplay.FindAction("MovePlayer1", throwIfNotFound: true);
+        m_Gameplay_MovePlayer2 = m_Gameplay.FindAction("MovePlayer2", throwIfNotFound: true);
+        m_Gameplay_Jump1 = m_Gameplay.FindAction("Jump1", throwIfNotFound: true);
+        m_Gameplay_Jump2 = m_Gameplay.FindAction("Jump2", throwIfNotFound: true);
+        m_Gameplay_Crouch1 = m_Gameplay.FindAction("Crouch1", throwIfNotFound: true);
+        m_Gameplay_Crouch2 = m_Gameplay.FindAction("Crouch2", throwIfNotFound: true);
+        m_Gameplay_Attack1 = m_Gameplay.FindAction("Attack1", throwIfNotFound: true);
+        m_Gameplay_Attack2 = m_Gameplay.FindAction("Attack2", throwIfNotFound: true);
+        m_Gameplay_Block1 = m_Gameplay.FindAction("Block1", throwIfNotFound: true);
+        m_Gameplay_Block2 = m_Gameplay.FindAction("Block2", throwIfNotFound: true);
+        m_Gameplay_Roll1 = m_Gameplay.FindAction("Roll1", throwIfNotFound: true);
+        m_Gameplay_Roll2 = m_Gameplay.FindAction("Roll2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -216,24 +366,34 @@ public class @PlayerActions : IInputActionCollection, IDisposable
     // Gameplay
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
-    private readonly InputAction m_Gameplay_Left;
-    private readonly InputAction m_Gameplay_Right;
-    private readonly InputAction m_Gameplay_Jump;
-    private readonly InputAction m_Gameplay_Crouch;
-    private readonly InputAction m_Gameplay_Attack;
-    private readonly InputAction m_Gameplay_Block;
-    private readonly InputAction m_Gameplay_Roll;
+    private readonly InputAction m_Gameplay_MovePlayer1;
+    private readonly InputAction m_Gameplay_MovePlayer2;
+    private readonly InputAction m_Gameplay_Jump1;
+    private readonly InputAction m_Gameplay_Jump2;
+    private readonly InputAction m_Gameplay_Crouch1;
+    private readonly InputAction m_Gameplay_Crouch2;
+    private readonly InputAction m_Gameplay_Attack1;
+    private readonly InputAction m_Gameplay_Attack2;
+    private readonly InputAction m_Gameplay_Block1;
+    private readonly InputAction m_Gameplay_Block2;
+    private readonly InputAction m_Gameplay_Roll1;
+    private readonly InputAction m_Gameplay_Roll2;
     public struct GameplayActions
     {
         private @PlayerActions m_Wrapper;
         public GameplayActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Left => m_Wrapper.m_Gameplay_Left;
-        public InputAction @Right => m_Wrapper.m_Gameplay_Right;
-        public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
-        public InputAction @Crouch => m_Wrapper.m_Gameplay_Crouch;
-        public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
-        public InputAction @Block => m_Wrapper.m_Gameplay_Block;
-        public InputAction @Roll => m_Wrapper.m_Gameplay_Roll;
+        public InputAction @MovePlayer1 => m_Wrapper.m_Gameplay_MovePlayer1;
+        public InputAction @MovePlayer2 => m_Wrapper.m_Gameplay_MovePlayer2;
+        public InputAction @Jump1 => m_Wrapper.m_Gameplay_Jump1;
+        public InputAction @Jump2 => m_Wrapper.m_Gameplay_Jump2;
+        public InputAction @Crouch1 => m_Wrapper.m_Gameplay_Crouch1;
+        public InputAction @Crouch2 => m_Wrapper.m_Gameplay_Crouch2;
+        public InputAction @Attack1 => m_Wrapper.m_Gameplay_Attack1;
+        public InputAction @Attack2 => m_Wrapper.m_Gameplay_Attack2;
+        public InputAction @Block1 => m_Wrapper.m_Gameplay_Block1;
+        public InputAction @Block2 => m_Wrapper.m_Gameplay_Block2;
+        public InputAction @Roll1 => m_Wrapper.m_Gameplay_Roll1;
+        public InputAction @Roll2 => m_Wrapper.m_Gameplay_Roll2;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -243,64 +403,108 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
             {
-                @Left.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLeft;
-                @Left.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLeft;
-                @Left.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLeft;
-                @Right.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRight;
-                @Right.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRight;
-                @Right.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRight;
-                @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
-                @Crouch.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
-                @Crouch.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
-                @Crouch.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
-                @Attack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
-                @Attack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
-                @Attack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack;
-                @Block.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBlock;
-                @Block.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBlock;
-                @Block.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBlock;
-                @Roll.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
-                @Roll.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
-                @Roll.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll;
+                @MovePlayer1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovePlayer1;
+                @MovePlayer1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovePlayer1;
+                @MovePlayer1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovePlayer1;
+                @MovePlayer2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovePlayer2;
+                @MovePlayer2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovePlayer2;
+                @MovePlayer2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovePlayer2;
+                @Jump1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump1;
+                @Jump1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump1;
+                @Jump1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump1;
+                @Jump2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump2;
+                @Jump2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump2;
+                @Jump2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump2;
+                @Crouch1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch1;
+                @Crouch1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch1;
+                @Crouch1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch1;
+                @Crouch2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch2;
+                @Crouch2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch2;
+                @Crouch2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch2;
+                @Attack1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack1;
+                @Attack1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack1;
+                @Attack1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack1;
+                @Attack2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack2;
+                @Attack2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack2;
+                @Attack2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAttack2;
+                @Block1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBlock1;
+                @Block1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBlock1;
+                @Block1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBlock1;
+                @Block2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBlock2;
+                @Block2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBlock2;
+                @Block2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBlock2;
+                @Roll1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll1;
+                @Roll1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll1;
+                @Roll1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll1;
+                @Roll2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll2;
+                @Roll2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll2;
+                @Roll2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRoll2;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Left.started += instance.OnLeft;
-                @Left.performed += instance.OnLeft;
-                @Left.canceled += instance.OnLeft;
-                @Right.started += instance.OnRight;
-                @Right.performed += instance.OnRight;
-                @Right.canceled += instance.OnRight;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
-                @Crouch.started += instance.OnCrouch;
-                @Crouch.performed += instance.OnCrouch;
-                @Crouch.canceled += instance.OnCrouch;
-                @Attack.started += instance.OnAttack;
-                @Attack.performed += instance.OnAttack;
-                @Attack.canceled += instance.OnAttack;
-                @Block.started += instance.OnBlock;
-                @Block.performed += instance.OnBlock;
-                @Block.canceled += instance.OnBlock;
-                @Roll.started += instance.OnRoll;
-                @Roll.performed += instance.OnRoll;
-                @Roll.canceled += instance.OnRoll;
+                @MovePlayer1.started += instance.OnMovePlayer1;
+                @MovePlayer1.performed += instance.OnMovePlayer1;
+                @MovePlayer1.canceled += instance.OnMovePlayer1;
+                @MovePlayer2.started += instance.OnMovePlayer2;
+                @MovePlayer2.performed += instance.OnMovePlayer2;
+                @MovePlayer2.canceled += instance.OnMovePlayer2;
+                @Jump1.started += instance.OnJump1;
+                @Jump1.performed += instance.OnJump1;
+                @Jump1.canceled += instance.OnJump1;
+                @Jump2.started += instance.OnJump2;
+                @Jump2.performed += instance.OnJump2;
+                @Jump2.canceled += instance.OnJump2;
+                @Crouch1.started += instance.OnCrouch1;
+                @Crouch1.performed += instance.OnCrouch1;
+                @Crouch1.canceled += instance.OnCrouch1;
+                @Crouch2.started += instance.OnCrouch2;
+                @Crouch2.performed += instance.OnCrouch2;
+                @Crouch2.canceled += instance.OnCrouch2;
+                @Attack1.started += instance.OnAttack1;
+                @Attack1.performed += instance.OnAttack1;
+                @Attack1.canceled += instance.OnAttack1;
+                @Attack2.started += instance.OnAttack2;
+                @Attack2.performed += instance.OnAttack2;
+                @Attack2.canceled += instance.OnAttack2;
+                @Block1.started += instance.OnBlock1;
+                @Block1.performed += instance.OnBlock1;
+                @Block1.canceled += instance.OnBlock1;
+                @Block2.started += instance.OnBlock2;
+                @Block2.performed += instance.OnBlock2;
+                @Block2.canceled += instance.OnBlock2;
+                @Roll1.started += instance.OnRoll1;
+                @Roll1.performed += instance.OnRoll1;
+                @Roll1.canceled += instance.OnRoll1;
+                @Roll2.started += instance.OnRoll2;
+                @Roll2.performed += instance.OnRoll2;
+                @Roll2.canceled += instance.OnRoll2;
             }
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+    private int m_KeyBoardSchemeIndex = -1;
+    public InputControlScheme KeyBoardScheme
+    {
+        get
+        {
+            if (m_KeyBoardSchemeIndex == -1) m_KeyBoardSchemeIndex = asset.FindControlSchemeIndex("KeyBoard");
+            return asset.controlSchemes[m_KeyBoardSchemeIndex];
+        }
+    }
     public interface IGameplayActions
     {
-        void OnLeft(InputAction.CallbackContext context);
-        void OnRight(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnCrouch(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
-        void OnBlock(InputAction.CallbackContext context);
-        void OnRoll(InputAction.CallbackContext context);
+        void OnMovePlayer1(InputAction.CallbackContext context);
+        void OnMovePlayer2(InputAction.CallbackContext context);
+        void OnJump1(InputAction.CallbackContext context);
+        void OnJump2(InputAction.CallbackContext context);
+        void OnCrouch1(InputAction.CallbackContext context);
+        void OnCrouch2(InputAction.CallbackContext context);
+        void OnAttack1(InputAction.CallbackContext context);
+        void OnAttack2(InputAction.CallbackContext context);
+        void OnBlock1(InputAction.CallbackContext context);
+        void OnBlock2(InputAction.CallbackContext context);
+        void OnRoll1(InputAction.CallbackContext context);
+        void OnRoll2(InputAction.CallbackContext context);
     }
 }
