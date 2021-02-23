@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class HeroKnightActions : MonoBehaviour
@@ -129,7 +130,7 @@ public class HeroKnightActions : MonoBehaviour
     }
 
     public void attackPlayer(Collider2D enemy) {
-        
+        // When Enemy Attacks Player
 
         
         m_currentAttack++;
@@ -152,9 +153,13 @@ public class HeroKnightActions : MonoBehaviour
                 m_timeSinceAttack = 0.0f;
                 return;
             } else {
-                e.TakeDamage(attackDamage);
+                e.TakeDamage(attackDamage, 1);
                 e.m_animator.SetBool("IdleBlock", false);
                 m_rolling = false;
+                // if (e.currentHealth <= 0) {
+                //     Debug.Log("BOT WINS");
+                //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                // }
             }
             
         }
@@ -168,7 +173,7 @@ public class HeroKnightActions : MonoBehaviour
     }
 
     public void attackEnemy(Collider2D enemy) {
-
+        // Player attacks enemy
         
 
         m_currentAttack++;
@@ -192,9 +197,13 @@ public class HeroKnightActions : MonoBehaviour
                 m_timeSinceAttack = 0.0f;
                 return;
             } else {
-                e.TakeDamage(attackDamage);
+                e.TakeDamage(attackDamage, 2);
                 e.m_animator.SetBool("IdleBlock", false);
                 m_rolling = false;
+                // if (e.currentHealth <= 0) {
+                //     Debug.Log("Player WINS");
+                //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                // }
             }
             
         }
@@ -251,19 +260,29 @@ public class HeroKnightActions : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage) {
+    public void TakeDamage(int damage, int playerNum) {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         if (currentHealth > 0)
             m_animator.SetTrigger("Hurt");
         if (currentHealth <= 0 && !finished) {
-            m_animator.SetBool("noBlood", m_noBlood);
-            m_animator.SetTrigger("Death");
-            // GetComponent<PlatformEffector2D>().enabled = true;
-            this.enabled = false;
-            finished = true;
+            StartCoroutine(DieRoutine(playerNum));
+            
         }
 
+    }
+
+    IEnumerator DieRoutine(int playerNum)
+    {
+        if (playerNum == 2) {playerNum = 1;} else {playerNum = 2;}
+        Debug.Log("DEAD");
+        m_animator.SetBool("noBlood", m_noBlood);
+        m_animator.SetTrigger("Death");
+        this.enabled = false;
+        finished = true;
+        yield return new WaitForSeconds(1);
+        Debug.Log("PLAYER " + playerNum + " WINS");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Animation Events

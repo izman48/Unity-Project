@@ -20,8 +20,8 @@ public class Player2 : MonoBehaviour
     void LateUpdate()
     {
         Collider2D enemy = Physics2D.OverlapBox(actions.m_swordHitBox.position, actions.m_swordHitBox.localScale, 0.0f, actions.enemyLayer);
-        actions.m_animator.SetTrigger("Block");
-        actions.m_animator.SetBool("IdleBlock", true);
+        // actions.m_animator.SetTrigger("Block");
+        // actions.m_animator.SetBool("IdleBlock", true);
         // -- Handle input and movement --
         // float inputX = Input.GetAxis("Horizontal");
 

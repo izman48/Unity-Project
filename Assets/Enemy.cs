@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
                                 knockback();
                                 return;
                             } else {
-                                e.TakeDamage(attackDamage);
+                                e.TakeDamage(attackDamage, 1);
                                 e.m_rolling = false;
                                 e.m_animator.SetBool("IdleBlock", false);
                             }
