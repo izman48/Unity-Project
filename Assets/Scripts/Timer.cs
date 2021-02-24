@@ -8,9 +8,9 @@ public class Timer : MonoBehaviour
 
     public float startTime = 90.0f;
     public float timeLeft = 0.0f;
-    [SerializeField] Text startText; // used for showing countdown from 3, 2, 1 
-    [SerializeField] HealthBar player1;
-    [SerializeField] HealthBar player2;
+    public Text startText; // used for showing countdown from 3, 2, 1 
+    public HealthBar player1;
+    public HealthBar player2;
 
     void Start()
     {

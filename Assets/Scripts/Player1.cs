@@ -76,7 +76,7 @@ public class Player1 : MonoBehaviour, Player
             }
 
             // Roll
-            else if (Input.GetKeyDown("left shift") && !actions.m_rolling)
+            else if (Input.GetKeyDown("left shift") && !actions.m_rolling && actions.m_grounded)
             {
                 actions.roll();
             }
