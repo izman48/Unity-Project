@@ -52,12 +52,12 @@ public class HeroKnightActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_body2d.position.y <= -5.0f) {
-            currentHealth = 0;
-            healthBar.SetHealth(currentHealth);
-            Debug.Log(player.playerID);
-            StartCoroutine(DieRoutine(player.playerID));
-        }
+        // if (m_body2d.position.y <= -5.0f) {
+        //     currentHealth = 0;
+        //     healthBar.SetHealth(currentHealth);
+        //     Debug.Log(player.playerID);
+        //     StartCoroutine(DieRoutine(player.playerID));
+        // }
 
         m_timeSinceAttack += Time.deltaTime;
         m_knockback += Time.deltaTime;

@@ -1,0 +1,30 @@
+{
+    "FighterAIAgent": {
+        "checkpoints": [
+            {
+                "steps": 499977,
+                "file_path": "results\\ai\\FighterAIAgent\\FighterAIAgent-499977.onnx",
+                "reward": 0.9421965317919075,
+                "creation_time": 1614169912.5557034
+            },
+            {
+                "steps": 500053,
+                "file_path": "results\\ai\\FighterAIAgent\\FighterAIAgent-500053.onnx",
+                "reward": 0.9428571428571428,
+                "creation_time": 1614169912.6387227
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500053,
+            "file_path": "results\\ai\\FighterAIAgent.onnx",
+            "reward": 0.9428571428571428,
+            "creation_time": 1614169912.6387227
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.23.0",
+        "torch_version": "1.7.0+cu110",
+        "tensorflow_version": -1
+    }
+}

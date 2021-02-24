@@ -131,17 +131,16 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ml-agents": {
-      "version": "1.0.6",
+      "version": "file:C:/Users/IesaW/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ml-agents@1.0.6",
       "depth": 0,
-      "source": "registry",
+      "source": "local",
       "dependencies": {
         "com.unity.barracuda": "1.0.4",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
         "com.unity.modules.physics": "1.0.0",
         "com.unity.modules.physics2d": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
+      }
     },
     "com.unity.test-framework": {
       "version": "1.1.16",

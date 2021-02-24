@@ -250,28 +250,28 @@ public class HeroKnight : MonoBehaviour {
         if (m_timeSinceAttack > 1.0f)
             m_currentAttack = 1;
 
-        if (enemy) {
-            Debug.Log("We hit " + enemy.name);
-            Enemy e = enemy.GetComponent<Enemy>();
-            if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
-                m_animator.SetTrigger("Hurt");
-                knockback();
-                m_timeSinceAttack = 0.0f;
-                return;
-            } else {
-                e.TakeDamage(attackDamage);
-                e.m_animator.SetBool("IdleBlock", false);
-                m_rolling = false;
-            }
+        // if (enemy) {
+        //     Debug.Log("We hit " + enemy.name);
+        //     // Enemy e = enemy.GetComponent<Enemy>();
+        //     if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
+        //         m_animator.SetTrigger("Hurt");
+        //         knockback();
+        //         m_timeSinceAttack = 0.0f;
+        //         return;
+        //     } else {
+        //         e.TakeDamage(attackDamage);
+        //         e.m_animator.SetBool("IdleBlock", false);
+        //         m_rolling = false;
+        //     }
             
-        }
-        // Call one of three attack animations "Attack1", "Attack2", "Attack3"
-        m_animator.SetTrigger("Attack" + m_currentAttack);
+        // }
+        // // Call one of three attack animations "Attack1", "Attack2", "Attack3"
+        // m_animator.SetTrigger("Attack" + m_currentAttack);
 
-        // Reset timer
-        m_timeSinceAttack = 0.0f;
-        if (m_grounded)
-                m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
+        // // Reset timer
+        // m_timeSinceAttack = 0.0f;
+        // if (m_grounded)
+        //         m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
     }
 
     public void faceDirection(float inputX) {
