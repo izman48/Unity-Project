@@ -11,6 +11,10 @@ public class FighterAIAgent : Agent
     {
         actionsOut[0] = Input.GetAxisRaw("Horizontal2");
         actionsOut[1] = Input.GetButton("Jump") ? 1f : 0f;
+        actionsOut[2] = Input.GetButton("Crouch") ? 1f : 0f;
+        actionsOut[3] = Input.GetButton("Attack") ? 1f : 0f;
+        actionsOut[4] = Input.GetButton("Block") ? 1f : 0f;
+        actionsOut[5] = Input.GetButton("Roll") ? 1f : 0f;
     }
     public override void OnEpisodeBegin()
     {
@@ -26,12 +30,20 @@ public class FighterAIAgent : Agent
     public override void OnActionReceived(float[] vectorAction)
     {
         float moveX = vectorAction[0];
+        float jump = vectorAction[1];
+        float crouch = vectorAction[2];
+        float attack = vectorAction[3];
+        float block = vectorAction[4];
+        float roll = vectorAction[5];
         // float moveY = vectorAction[1];
         float moveSpeed = 4f;
         float jumpHeight = 7.5f;
-        float jump = vectorAction[1];
         transform.localPosition += new Vector3(moveX, 0, 0) * Time.deltaTime * moveSpeed;
         transform.localPosition += new Vector3(0, jump, 0) * Time.deltaTime * jumpHeight;
+        if (attack > 0.9f) Debug.Log("attack");
+        if (crouch > 0.9f) Debug.Log("crouch");
+        if (block > 0.9f) Debug.Log("block");
+        if (roll > 0.9f) Debug.Log("roll");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
