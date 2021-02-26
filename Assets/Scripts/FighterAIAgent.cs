@@ -5,14 +5,23 @@ using UnityEngine.Tilemaps;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 
-public class FighterAIAgent : Agent
+public class FighterAIAgent : Agent, Player
 {
     [SerializeField] private Transform target;
     public Tilemap tilemap;        
     private List<Vector3> availablePlaces;
+    public int playerID {get {return 2;}}
+    public HeroKnightActions actions;
+    private bool m_crouch = false;
+    private bool m_roll = false;
+    private bool m_block = false;
+    private bool m_jump = false;
+    private bool m_attack = false;
+    private float inputX = 0f;
 
     void Awake()
     {
+        actions = GetComponent<HeroKnightActions>();
         availablePlaces = new List<Vector3>();
         int count = 0;
         // controls = new PlayerActions();
@@ -36,6 +45,11 @@ public class FighterAIAgent : Agent
         actionsOut[3] = Input.GetButton("Attack") ? 1f : 0f;
         actionsOut[4] = Input.GetButton("Block") ? 1f : 0f;
         actionsOut[5] = Input.GetButton("Roll") ? 1f : 0f;
+        actionsOut[6] = Input.GetButton("Crouch") ? 0f : 1f;
+        actionsOut[7] = Input.GetButton("Block") ? 0f : 1f;
+        actionsOut[8] = Input.GetButton("Roll") ? 0f : 1f;
+        actionsOut[9] = Input.GetButton("Jump") ? 0f : 1f;
+        actionsOut[10] = Input.GetButton("Attack") ? 0f : 1f;
     }
     public override void OnEpisodeBegin()
     {
@@ -59,15 +73,57 @@ public class FighterAIAgent : Agent
         float attack = vectorAction[3];
         float block = vectorAction[4];
         float roll = vectorAction[5];
+        float uncrouch = vectorAction[6];
+        float unblock = vectorAction[7];
+        float unroll = vectorAction[8];
+        float unjump = vectorAction[9];
+        float unattack = vectorAction[10];
         // float moveY = vectorAction[1];
-        float moveSpeed = 4f;
-        float jumpHeight = 7.5f;
-        transform.localPosition += new Vector3(moveX, 0, 0) * Time.deltaTime * moveSpeed;
-        transform.localPosition += new Vector3(0, jump, 0) * Time.deltaTime * jumpHeight;
-        if (attack > 0.9f) Debug.Log("attack");
-        if (crouch > 0.9f) Debug.Log("crouch");
-        if (block > 0.9f) Debug.Log("block");
-        if (roll > 0.9f) Debug.Log("roll");
+        // float moveSpeed = 4f;
+        // float jumpHeight = 7.5f;
+        inputX = moveX;
+        if (jump > 0.9f && !m_jump) {
+            Debug.Log("jump");
+            m_jump = true;
+            }
+        // transform.localPosition += new Vector3(moveX, 0, 0) * Time.deltaTime * moveSpeed;
+        // transform.localPosition += new Vector3(0, jump, 0) * Time.deltaTime * jumpHeight;
+        if (attack > 0.9f && !m_attack) {
+            Debug.Log("Attack");
+            m_attack = true;
+        }
+        if (crouch > 0.9f && !m_crouch) {
+            Debug.Log("crouch");
+            m_crouch = true;
+            }
+        if (block > 0.9f && !m_block) {
+            Debug.Log("block");
+            m_block = true;
+            }
+        if (roll > 0.9f && !m_roll) {
+            Debug.Log("roll");
+            m_roll = true;
+            }
+        if (uncrouch > 0.9f && m_crouch) {
+            Debug.Log("uncrouch");
+            m_crouch = false;
+            }
+        if (unblock > 0.9f && m_block) {
+            Debug.Log("unblock");
+            m_block = false;
+            }
+        if (unroll > 0.9f && m_roll) {
+            Debug.Log("unroll");
+            m_roll = false;
+            }
+        if (unjump > 0.9f && m_jump) {
+            Debug.Log("unroll");
+            m_jump = false;
+            }
+        if (unattack > 0.9f && m_attack) {
+            Debug.Log("unroll");
+            m_attack = false;
+            }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -80,5 +136,74 @@ public class FighterAIAgent : Agent
             SetReward(-1f);
             EndEpisode();
         }
+    }
+
+    // Update is called once per frame
+    void LateUpdate()
+    {
+        Collider2D enemy = Physics2D.OverlapBox(actions.m_swordHitBox.position, actions.m_swordHitBox.localScale, 0.0f, actions.enemyLayer);
+        actions.faceDirection(inputX);
+
+        // Move
+        if (!actions.m_rolling && actions.m_timeSinceAttack > 0.25f){
+            // Debug.Log(m_knockback);
+            actions.m_body2d.velocity = new Vector2(inputX * actions.m_speed, actions.m_body2d.velocity.y);
+        }
+        if (m_block && !actions.m_animator.GetBool("Crouch")) 
+        {
+            actions.block();
+        }
+        else if (!m_block && actions.m_animator.GetBool("IdleBlock")) 
+        {
+            actions.unblock();
+        }
+        else if (!actions.m_animator.GetBool("IdleBlock")) 
+        {
+            if (m_attack && actions.m_timeSinceAttack > 0.25f)
+            {
+                actions.attackPlayer(enemy);
+                // m_attack = false;
+            }
+            else if (m_crouch && actions.m_grounded) 
+            {
+                actions.crouch();
+            }
+            else if (!m_crouch && actions.m_animator.GetBool("Crouch"))
+            {
+                actions.uncrouch();
+            }
+            else if (m_roll && !actions.m_rolling)
+            {
+                actions.roll();
+            }
+            else if (!m_roll && actions.m_animator.GetBool("Crouch"))
+            {
+                actions.uncrouch();
+            }
+            else if (m_jump && actions.m_grounded)
+            {
+                // m_jump = false;
+                actions.jump();
+                Debug.Log("reached");
+            }
+            else if (Mathf.Abs(inputX) > Mathf.Epsilon)
+            {
+                // Reset timer
+                actions.m_delayToIdle = 0.05f;
+                actions.m_animator.SetInteger("AnimState", 1);    
+            }
+            else 
+            {
+                actions.m_delayToIdle -= Time.deltaTime;
+                if(actions.m_delayToIdle < 0)
+                    actions.m_animator.SetInteger("AnimState", 0);
+            }
+        }
+        // if grounded and blocking or crouching don't move
+        if (actions.m_grounded && (actions.m_animator.GetBool("IdleBlock") || actions.m_animator.GetBool("Crouch") )){
+            // Debug.Log(m_animator.GetBool("Crouch") );
+            actions.m_body2d.velocity = new Vector2(0, actions.m_body2d.velocity.y);
+        }
+
     }
 }

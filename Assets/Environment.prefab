@@ -2703,7 +2703,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3279290369168803725}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bace5808f35141241bbd61db1b0bf66f, type: 3}
   m_Name: 
@@ -2769,6 +2769,7 @@ MonoBehaviour:
   MaxStep: 1000
   target: {fileID: 3279290367695176947}
   tilemap: {fileID: 3279290369381507304}
+  actions: {fileID: 0}
 --- !u!114 &3279290369168803712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2784,7 +2785,7 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 207
     NumStackedVectorObservations: 1
-    VectorActionSize: 06000000
+    VectorActionSize: 0b000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
   m_Model: {fileID: 5022602860645237092, guid: 921baa6a52902b9499888e63a646c78e, type: 3}
