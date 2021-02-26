@@ -1,12 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 
 public class FighterAIAgent : Agent
 {
     [SerializeField] private Transform target;
+    public Tilemap tilemap;        
+    private List<Vector3> availablePlaces;
+
+    void Awake()
+    {
+        availablePlaces = new List<Vector3>();
+        int count = 0;
+        // controls = new PlayerActions();
+        foreach (var position in tilemap.cellBounds.allPositionsWithin) {
+            if (!tilemap.HasTile(position)) {
+                continue;
+            }
+            Vector3 place = tilemap.CellToWorld(position);
+            availablePlaces.Add(place);
+            count++;
+            // Debug.Log(place);
+        }
+        Debug.Log(count);
+    }
+
     public override void Heuristic(float[] actionsOut)
     {
         actionsOut[0] = Input.GetAxisRaw("Horizontal2");
@@ -26,6 +47,9 @@ public class FighterAIAgent : Agent
     {
         sensor.AddObservation(transform.localPosition);
         sensor.AddObservation(target.localPosition);
+        foreach( Vector3 place in availablePlaces) {
+            sensor.AddObservation(place); /*67x3*/
+        }
     }
     public override void OnActionReceived(float[] vectorAction)
     {
