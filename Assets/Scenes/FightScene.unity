@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -157,6 +162,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -218,6 +228,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &272508401
@@ -227,6 +242,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -256,6 +276,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -317,6 +342,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &337392281
@@ -326,6 +356,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -355,6 +390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -416,6 +456,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &370468412
@@ -425,6 +470,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -454,6 +504,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -515,6 +570,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &522853599
@@ -524,6 +584,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -553,6 +618,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -614,6 +684,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1 &725449238
@@ -706,6 +781,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -735,6 +815,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -796,6 +881,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1192718216
@@ -805,6 +895,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -834,6 +929,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -895,6 +995,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1340564841
@@ -904,6 +1009,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -933,6 +1043,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -994,6 +1109,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1447535473
@@ -1003,6 +1123,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1032,6 +1157,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -1093,6 +1223,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1509404475
@@ -1102,6 +1237,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1131,6 +1271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -1192,6 +1337,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1536443494
@@ -1201,6 +1351,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1230,6 +1385,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -1291,6 +1451,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1786995781
@@ -1300,6 +1465,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1329,6 +1499,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -1390,6 +1565,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1809399768
@@ -1399,6 +1579,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1428,6 +1613,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -1489,6 +1679,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1900995482
@@ -1498,6 +1693,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1527,6 +1727,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -1588,6 +1793,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1901723761
@@ -1597,6 +1807,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1626,6 +1841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -1687,6 +1907,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1901775790
@@ -1696,6 +1921,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1725,6 +1955,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -1786,6 +2021,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1974278164
@@ -1795,6 +2035,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1824,6 +2069,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -1885,6 +2135,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &1978670033
@@ -1983,6 +2238,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2012,6 +2272,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -2073,6 +2338,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}
 --- !u!1001 &2089772822
@@ -2082,6 +2352,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3279290367832365806, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3279290368174483760, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2111,6 +2386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279290369374005702, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3279290369374005703, guid: 4e0962d56b7c05a46926491b27a93357,
         type: 3}
@@ -2172,5 +2452,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7015699fb38f41a4abfe8aa13494aac9, type: 2}
+    - target: {fileID: 3279290369381507310, guid: 4e0962d56b7c05a46926491b27a93357,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e0962d56b7c05a46926491b27a93357, type: 3}

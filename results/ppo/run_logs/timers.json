@@ -2,44 +2,79 @@
     "name": "root",
     "metadata": {
         "timer_format_version": "0.1.0",
-        "start_time_seconds": "1614169360",
+        "start_time_seconds": "1614599854",
         "python_version": "3.7.9 (tags/v3.7.9:13c94747c7, Aug 17 2020, 18:58:18) [MSC v.1900 64 bit (AMD64)]",
-        "command_line_arguments": "C:\\Users\\IesaW\\Fighter\\venv\\Scripts\\mlagents-learn --force",
+        "command_line_arguments": "C:\\Users\\IesaW\\Fighter\\venv\\Scripts\\mlagents-learn config\\FighterAI.yaml --force",
         "mlagents_version": "0.23.0",
         "mlagents_envs_version": "0.23.0",
         "communication_protocol_version": "1.3.0",
         "pytorch_version": "1.7.0+cu110",
         "numpy_version": "1.18.5",
-        "end_time_seconds": "1614169366"
+        "end_time_seconds": "1614599861"
     },
-    "total": 6.0953029999999995,
+    "total": 7.771028399999999,
     "count": 1,
-    "self": 0.00447810000000004,
+    "self": 0.008176199999998524,
     "children": {
         "run_training.setup": {
-            "total": 0.008161500000000155,
+            "total": 0.008086500000000107,
             "count": 1,
-            "self": 0.008161500000000155
+            "self": 0.008086500000000107
         },
         "TrainerController.start_learning": {
-            "total": 6.0826633999999995,
+            "total": 7.7547657,
             "count": 1,
-            "self": 0.0019928000000000168,
+            "self": 0.00014080000000138426,
             "children": {
                 "TrainerController._reset_env": {
-                    "total": 6.0799711,
+                    "total": 7.0619308,
                     "count": 1,
-                    "self": 6.0799711
+                    "self": 7.0619308
                 },
-                "trainer_threads": {
-                    "total": 2.5999999992976086e-06,
+                "TrainerController.advance": {
+                    "total": 0.4854661,
                     "count": 1,
-                    "self": 2.5999999992976086e-06
+                    "self": 9.700000001444664e-06,
+                    "children": {
+                        "env_step": {
+                            "total": 0.48545639999999857,
+                            "count": 1,
+                            "self": 0.00032979999999760423,
+                            "children": {
+                                "SubprocessEnvManager._take_step": {
+                                    "total": 0.48512660000000096,
+                                    "count": 1,
+                                    "self": 3.290000000077953e-05,
+                                    "children": {
+                                        "TorchPolicy.evaluate": {
+                                            "total": 0.4850937000000002,
+                                            "count": 1,
+                                            "self": 0.00026779999999959614,
+                                            "children": {
+                                                "TorchPolicy.sample_actions": {
+                                                    "total": 0.4848259000000006,
+                                                    "count": 1,
+                                                    "self": 0.4848259000000006
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 },
                 "TrainerController._save_models": {
-                    "total": 0.0006969000000003334,
+                    "total": 0.20722799999999886,
                     "count": 1,
-                    "self": 0.0006969000000003334
+                    "self": 0.01825369999999893,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.18897429999999993,
+                            "count": 1,
+                            "self": 0.18897429999999993
+                        }
+                    }
                 }
             }
         }

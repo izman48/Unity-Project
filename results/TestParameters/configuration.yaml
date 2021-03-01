@@ -23,6 +23,11 @@ behaviors:
       extrinsic:
         gamma: 0.99
         strength: 1.0
+      curiosity:
+        gamma: 0.99
+        strength: 0.02
+        encoding_size: 256
+        learning_rate: 0.0003
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 50000
@@ -32,10 +37,10 @@ behaviors:
     threaded: true
     self_play:
       save_steps: 50000
-      team_change: 200000
-      swap_steps: 10000
+      team_change: 100000
+      swap_steps: 20000
       window: 15
-      play_against_latest_model_ratio: 0.7
+      play_against_latest_model_ratio: 0.8
       initial_elo: 1200.0
     behavioral_cloning: null
     framework: pytorch
@@ -55,7 +60,7 @@ engine_settings:
   no_graphics: false
 environment_parameters: null
 checkpoint_settings:
-  run_id: ppo
+  run_id: TestParameters
   initialize_from: null
   load_model: false
   resume: false

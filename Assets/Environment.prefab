@@ -144,7 +144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3279290367695176947
 Transform:
   m_ObjectHideFlags: 0
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 3279290367832365806}
   - component: {fileID: 3279290367832365795}
   m_Layer: 0
-  m_Name: Walls
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,8 +277,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3279290367832365800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1.4090331, y: 1.4461923, z: 1}
+  m_LocalPosition: {x: 0, y: 1.98, z: 1}
+  m_LocalScale: {x: 1.4090331, y: 1.7290224, z: 1}
   m_Children: []
   m_Father: {fileID: 3279290367591214427}
   m_RootOrder: 1
@@ -1188,31 +1188,31 @@ CompositeCollider2D:
   - m_Collider: {fileID: 3279290367832365804}
     m_ColliderPaths:
     - - X: 140000016
-        Y: 80000000
+        Y: 95645504
       - X: -140000016
-        Y: 80000000
+        Y: 95645504
       - X: -140000016
-        Y: -70000000
+        Y: -83689816
       - X: 140000016
-        Y: -70000000
+        Y: -83689816
     - - X: -130000016
-        Y: -60000000
+        Y: -71734128
       - X: -130000016
-        Y: 70000000
+        Y: 83689816
       - X: 130000016
-        Y: 70000000
+        Y: 83689816
       - X: 130000016
-        Y: -60000000
+        Y: -71734128
   m_CompositePaths:
     m_Paths:
-    - - {x: 13.999973, y: -7}
-      - {x: 13.999973, y: 8}
-      - {x: -14.000002, y: 7.9999704}
-      - {x: -13.999973, y: -7}
-    - - {x: 13.000002, y: -5.9999704}
-      - {x: -13.000002, y: -5.9999704}
-      - {x: -12.999972, y: 7}
-      - {x: 13.000002, y: 6.9999704}
+    - - {x: 13.999973, y: -8.368981}
+      - {x: 13.999973, y: 9.56455}
+      - {x: -14.000002, y: 9.564521}
+      - {x: -13.999973, y: -8.368981}
+    - - {x: 13.000002, y: -7.173383}
+      - {x: -13.000002, y: -7.173383}
+      - {x: -12.999972, y: 8.368981}
+      - {x: 13.000002, y: 8.368952}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!114 &3279290367832365795
@@ -1238,11 +1238,14 @@ GameObject:
   - component: {fileID: 3279290368681896850}
   - component: {fileID: 3279290367891863697}
   - component: {fileID: 3279290367891863696}
+  - component: {fileID: 3279290367891863702}
   - component: {fileID: 3279290367891863699}
   - component: {fileID: 3279290367891863698}
+  - component: {fileID: 2174227148047308646}
   - component: {fileID: 3279290367891863703}
   - component: {fileID: 3279290367891863700}
-  - component: {fileID: 3279290367891863702}
+  - component: {fileID: 590628205361396760}
+  - component: {fileID: 4477054527817599279}
   m_Layer: 9
   m_Name: HeroKnight
   m_TagString: Player
@@ -1258,7 +1261,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3279290367891863709}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: -3.83, z: 0.10320933}
+  m_LocalPosition: {x: -5.74, y: -3.92, z: 0.10320933}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3279290368311048572}
@@ -1335,6 +1338,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &3279290367891863702
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279290367891863709}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00000047683716, y: 0.66399074}
+  m_Size: {x: 0.7348108, y: 1.2763124}
+  m_Direction: 0
 --- !u!50 &3279290367891863699
 Rigidbody2D:
   serializedVersion: 4
@@ -1343,7 +1362,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3279290367891863709}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1382,6 +1401,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.73, y: 1.2}
   m_EdgeRadius: 0
+--- !u!114 &2174227148047308646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279290367891863709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d45ddf11b1032345b7b969e9f2feb4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 5000
+  target: {fileID: 3279290368155839298}
+  tilemap: {fileID: 3279290369381507304}
+  playerID: 1
+  actions: {fileID: 3279290367891863700}
 --- !u!114 &3279290367891863703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,7 +1441,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3279290367891863709}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bace5808f35141241bbd61db1b0bf66f, type: 3}
   m_Name: 
@@ -1435,23 +1474,48 @@ MonoBehaviour:
   finished: 0
   m_knockback: 2
   m_knockback_cooldown: 0.5
+  block_reward: 0.001
+  timer: {fileID: 3279290368263240416}
   sword_height: 0
---- !u!70 &3279290367891863702
-CapsuleCollider2D:
+  enemy: {fileID: 3279290369168803725}
+--- !u!114 &590628205361396760
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3279290367891863709}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.00000047683716, y: 0.66399074}
-  m_Size: {x: 0.7348108, y: 1.2763124}
-  m_Direction: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 207
+    NumStackedVectorObservations: 1
+    VectorActionSize: 06000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 1
+  m_BehaviorType: 0
+  m_BehaviorName: FighterAIAgent
+  TeamId: 1
+  m_UseChildSensors: 1
+--- !u!114 &4477054527817599279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3279290367891863709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 1
 --- !u!1 &3279290367917760455
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,6 +2201,8 @@ MonoBehaviour:
   startText: {fileID: 3279290368138720459}
   player1: {fileID: 3279290368168900107}
   player2: {fileID: 3279290367917760453}
+  player1Obj: {fileID: 3279290367891863709}
+  player2Obj: {fileID: 3279290369168803725}
 --- !u!1 &3279290368285530921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,7 +2625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3279290369168803725}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.17, y: -3.799437, z: 0.10320933}
+  m_LocalPosition: {x: 3.34, y: -3.799437, z: 0.10320933}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3279290369000245376}
@@ -2736,7 +2802,10 @@ MonoBehaviour:
   finished: 0
   m_knockback: 2
   m_knockback_cooldown: 0.5
+  block_reward: 0.001
+  timer: {fileID: 3279290368263240416}
   sword_height: 0
+  enemy: {fileID: 3279290367891863709}
 --- !u!114 &3279290369168803714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2766,9 +2835,10 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 1000
-  target: {fileID: 3279290367695176947}
+  MaxStep: 5000
+  target: {fileID: 3279290368681896850}
   tilemap: {fileID: 3279290369381507304}
+  playerID: 2
   actions: {fileID: 0}
 --- !u!114 &3279290369168803712
 MonoBehaviour:
@@ -2785,14 +2855,14 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 207
     NumStackedVectorObservations: 1
-    VectorActionSize: 0b000000
+    VectorActionSize: 06000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: 921baa6a52902b9499888e63a646c78e, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 1
-  m_BehaviorType: 1
+  m_BehaviorType: 0
   m_BehaviorName: FighterAIAgent
-  TeamId: 0
+  TeamId: 2
   m_UseChildSensors: 1
 --- !u!1 &3279290369374005702
 GameObject:

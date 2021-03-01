@@ -10,6 +10,7 @@ public class HeroKnightActions : MonoBehaviour
     [SerializeField] public float      m_rollForce = 6.0f;
     [SerializeField] public bool       m_noBlood = false;
     [SerializeField] public GameObject m_slideDust;
+    // public GameObject           otherPlayer;
     public LayerMask            enemyLayer;
     public HealthBar            healthBar;
 
@@ -31,15 +32,24 @@ public class HeroKnightActions : MonoBehaviour
     public bool                finished;
     public float               m_knockback = 2.0f;
     public float               m_knockback_cooldown = 0.5f;
+    private float jump_reward = 0.01f;
+    private float attack_reward = 0.01f;
+    public float block_reward = 0.02f;
+    private float crouch_reward = 0.01f;
+    private float roll_reward = 0.001f;
+    public Timer timer;
+
     public float sword_height;
-    Player player;
+    private FighterAIAgent parentScript;
+    public GameObject enemy;
+    // Player player;
     // Start is called before the first frame update
     void Start()
     {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_hitbox = GetComponent<BoxCollider2D>();
-        player = GetComponent<Player>();
+        // player = GetComponent<Player>();
         m_swordHitBox = transform.Find("SwordHitBox").transform;
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
         healthBar.SetMaxHealth(maxHealth); 
@@ -47,8 +57,32 @@ public class HeroKnightActions : MonoBehaviour
         currentHealth = maxHealth;
         sword_height = 1.05f;
         faceDirection(m_facingDirection);
+        parentScript = GetComponent<FighterAIAgent>();
+        // timer = GetComponent<Timer>();
+        // Debug.Log(parentScript);
     }
 
+    public void Reset()
+    {
+        // Debug.Log("Reset");
+        jump();
+        // m_animator.SetTrigger("Idle");
+        m_body2d = GetComponent<Rigidbody2D>();
+        m_hitbox = GetComponent<BoxCollider2D>();
+        // player = GetComponent<Player>();
+        m_swordHitBox = transform.Find("SwordHitBox").transform;
+        m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
+        healthBar.SetMaxHealth(maxHealth); 
+        finished = false;
+        currentHealth = maxHealth;
+        sword_height = 1.05f;
+        faceDirection(m_facingDirection);
+        parentScript = GetComponent<FighterAIAgent>();
+        // timer = GetComponent<Timer>();
+
+        // Debug.Log(parentScript);
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -87,6 +121,8 @@ public class HeroKnightActions : MonoBehaviour
     }
 
     public void jump() {
+        parentScript.giveReward(jump_reward);
+        jump_reward *= 0.1f;
         m_animator.SetTrigger("Jump");
         m_grounded = false;
         m_animator.SetBool("Grounded", m_grounded);
@@ -95,6 +131,8 @@ public class HeroKnightActions : MonoBehaviour
     }
 
     public void roll() {
+        parentScript.giveReward(roll_reward);
+        roll_reward *= 0.1f;
         m_rolling = true;
         m_animator.SetTrigger("Roll");
         m_hitbox.offset = new Vector2(0.0f, 0.462f);
@@ -103,6 +141,8 @@ public class HeroKnightActions : MonoBehaviour
     }
 
     public void crouch() {
+        parentScript.giveReward(crouch_reward);
+        crouch_reward *= 0.1f;
         m_crouch = true;
         m_animator.SetBool("Crouch", true);
         m_hitbox.offset = new Vector2(0.0f, 0.462f);
@@ -127,6 +167,7 @@ public class HeroKnightActions : MonoBehaviour
     }
 
     public void block() {
+        
         m_animator.SetTrigger("Block");
         m_animator.SetBool("IdleBlock", true);
         m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
@@ -136,6 +177,57 @@ public class HeroKnightActions : MonoBehaviour
         m_animator.SetBool("IdleBlock", false);
     }
 
+    public void attack(Collider2D enemy) {
+        // When Enemy Attacks Player
+
+        
+        m_currentAttack++;
+
+        // Loop back to one after third attack
+        if (m_currentAttack > 3)
+            m_currentAttack = 1;
+
+        // Reset Attack combo if time since last attack is too large
+        if (m_timeSinceAttack > 1.0f)
+            m_currentAttack = 1;
+
+        if (enemy) {
+            Debug.Log("We hit " + enemy.name);
+            FighterAIAgent player = enemy.GetComponent<FighterAIAgent>();
+            HeroKnightActions e = player.actions;
+            // if they block
+            if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
+                player.giveReward(e.block_reward);
+                e.block_reward *= 0.1f;
+
+                m_animator.SetTrigger("Hurt");
+                knockback(parentScript.playerID);
+                m_timeSinceAttack = 0.0f;
+                return;
+            } else {
+                // they get hit
+                parentScript.giveReward(attack_reward);
+                attack_reward *= 0.1f;
+
+                e.TakeDamage(attackDamage, player.playerID); // how much damage and who is taking it
+                e.m_animator.SetBool("IdleBlock", false);
+                m_rolling = false;
+                // if (e.currentHealth <= 0) {
+                //     Debug.Log("BOT WINS");
+                //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                // }
+            }
+            
+        }
+        // Call one of three attack animations "Attack1", "Attack2", "Attack3"
+        m_animator.SetTrigger("Attack" + m_currentAttack);
+
+        // Reset timer
+        m_timeSinceAttack = 0.0f;
+        if (m_grounded)
+                m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
+        
+    }
     public void attackPlayer(Collider2D enemy) {
         // When Enemy Attacks Player
 
@@ -160,6 +252,7 @@ public class HeroKnightActions : MonoBehaviour
                 m_timeSinceAttack = 0.0f;
                 return;
             } else {
+                
                 e.TakeDamage(attackDamage, 1); // how much damage and who is taking it
                 e.m_animator.SetBool("IdleBlock", false);
                 m_rolling = false;
@@ -268,11 +361,16 @@ public class HeroKnightActions : MonoBehaviour
     }
 
     public void TakeDamage(int damage, int playerNum) {
+        if (playerNum == parentScript.playerID) {
+            parentScript.giveReward(-0.01f); 
+        }
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         if (currentHealth > 0)
             m_animator.SetTrigger("Hurt");
         if (currentHealth <= 0 && !finished) {
+            // Debug.Log(parentScript);
+            // parentScript.giveReward(-1f);
             StartCoroutine(DieRoutine(playerNum));
             
         }
@@ -281,7 +379,7 @@ public class HeroKnightActions : MonoBehaviour
 
     IEnumerator DieRoutine(int playerNum)
     {
-        Debug.Log("DEAD");
+        // Debug.Log("DEAD");
         if (playerNum == 2) {playerNum = 1;} else {playerNum = 2;}
         m_animator.SetBool("noBlood", m_noBlood);
         m_animator.SetTrigger("Death");
@@ -289,7 +387,26 @@ public class HeroKnightActions : MonoBehaviour
         finished = true;
         yield return new WaitForSeconds(1);
         Debug.Log("PLAYER " + playerNum + " WINS");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // if (playerNum == 2) {
+        //     FighterAIAgent script = GetComponent<FighterAIAgent>();
+        //     script.SetReward(+1f);
+        // } else {
+        //     FighterAIAgent script = GetComponent<FighterAIAgent>();
+        //     script.SetReward(-1f);
+        // }
+        if (playerNum == parentScript.playerID) {
+            parentScript.giveReward(-1f);
+        } else {
+            // give oponent positive rewards
+            parentScript.giveReward(+1f);
+        }
+        timer.Reset();
+
+        FighterAIAgent player = enemy.GetComponent<FighterAIAgent>();
+        player.nextEpisode();
+        parentScript.nextEpisode();
+
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Animation Events

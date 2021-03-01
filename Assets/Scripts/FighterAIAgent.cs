@@ -5,12 +5,13 @@ using UnityEngine.Tilemaps;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 
-public class FighterAIAgent : Agent, Player
+public class FighterAIAgent : Agent
 {
     [SerializeField] private Transform target;
     public Tilemap tilemap;        
     private List<Vector3> availablePlaces;
-    public int playerID {get {return 2;}}
+    public int playerID;
+    private FighterAIAgent otherScript;
     public HeroKnightActions actions;
     private bool m_crouch = false;
     private bool m_roll = false;
@@ -22,6 +23,7 @@ public class FighterAIAgent : Agent, Player
     void Awake()
     {
         actions = GetComponent<HeroKnightActions>();
+        otherScript = target.GetComponent<FighterAIAgent>();
         availablePlaces = new List<Vector3>();
         int count = 0;
         // controls = new PlayerActions();
@@ -34,27 +36,43 @@ public class FighterAIAgent : Agent, Player
             count++;
             // Debug.Log(place);
         }
-        Debug.Log(count);
+        // Debug.Log(count);
     }
 
     public override void Heuristic(float[] actionsOut)
     {
-        actionsOut[0] = Input.GetAxisRaw("Horizontal2");
-        actionsOut[1] = Input.GetButton("Jump") ? 1f : 0f;
-        actionsOut[2] = Input.GetButton("Crouch") ? 1f : 0f;
-        actionsOut[3] = Input.GetButton("Attack") ? 1f : 0f;
-        actionsOut[4] = Input.GetButton("Block") ? 1f : 0f;
-        actionsOut[5] = Input.GetButton("Roll") ? 1f : 0f;
-        actionsOut[6] = Input.GetButton("Crouch") ? 0f : 1f;
-        actionsOut[7] = Input.GetButton("Block") ? 0f : 1f;
-        actionsOut[8] = Input.GetButton("Roll") ? 0f : 1f;
-        actionsOut[9] = Input.GetButton("Jump") ? 0f : 1f;
-        actionsOut[10] = Input.GetButton("Attack") ? 0f : 1f;
+        if (playerID == 2){
+            actionsOut[0] = Input.GetAxisRaw("Horizontal2");
+            actionsOut[1] = Input.GetButton("Jump") ? 1f : 0f;
+            actionsOut[2] = Input.GetButton("Crouch") ? 1f : 0f;
+            actionsOut[3] = Input.GetButton("Attack") ? 1f : 0f;
+            actionsOut[4] = Input.GetButton("Block") ? 1f : 0f;
+            actionsOut[5] = Input.GetButton("Roll") ? 1f : 0f;
+        } else {
+            actionsOut[0] = Input.GetAxisRaw("Horizontal1");
+            actionsOut[1] = Input.GetButton("Jump2") ? 1f : 0f;
+            actionsOut[2] = Input.GetButton("Crouch2") ? 1f : 0f;
+            actionsOut[3] = Input.GetButton("Attack2") ? 1f : 0f;
+            actionsOut[4] = Input.GetButton("Block2") ? 1f : 0f;
+            actionsOut[5] = Input.GetButton("Roll2") ? 1f : 0f;
+        }
+        // actionsOut[6] = Input.GetButton("Crouch") ? 0f : 1f;
+        // actionsOut[7] = Input.GetButton("Block") ? 0f : 1f;
+        // actionsOut[8] = Input.GetButton("Roll") ? 0f : 1f;
+        // actionsOut[9] = Input.GetButton("Jump") ? 0f : 1f;
+        // actionsOut[10] = Input.GetButton("Attack") ? 0f : 1f;
     }
     public override void OnEpisodeBegin()
     {
-        transform.localPosition = new Vector3(Random.Range(0f,6f), Random.Range(4f,-3.799437f), 0);
-        target.localPosition = new Vector3(Random.Range(-7f, 0f), Random.Range(4f, -3.7f), 0);
+
+        if (playerID == 1) {
+            transform.localPosition = new Vector3(-5.8f, -3.8f, 0);
+        } else {
+            transform.localPosition = new Vector3(3.3f, -3.8f, 0);
+        }
+        // target.localPosition = new Vector3(Random.Range(-7f, 0f), Random.Range(4f, -3.7f), 0);
+        // actions = GetComponent<HeroKnightActions>();
+        actions.Reset();
     }
     
     public override void CollectObservations(VectorSensor sensor)
@@ -73,67 +91,71 @@ public class FighterAIAgent : Agent, Player
         float attack = vectorAction[3];
         float block = vectorAction[4];
         float roll = vectorAction[5];
-        float uncrouch = vectorAction[6];
-        float unblock = vectorAction[7];
-        float unroll = vectorAction[8];
-        float unjump = vectorAction[9];
-        float unattack = vectorAction[10];
+        // float uncrouch = vectorAction[6];
+        // float unblock = vectorAction[7];
+        // float unroll = vectorAction[8];
+        // float unjump = vectorAction[9];
+        // float unattack = vectorAction[10];
         // float moveY = vectorAction[1];
         // float moveSpeed = 4f;
         // float jumpHeight = 7.5f;
         inputX = moveX;
+        if (jump < 0.1f) m_jump = false;
+        if (attack < 0.1f) m_attack = false;
+        if (block < 0.1f) m_block = false;
+        if (roll < 0.1f) m_roll = false;
+        if (crouch < 0.1f) m_crouch = false;
+
         if (jump > 0.9f && !m_jump) {
-            Debug.Log("jump");
+            // Debug.Log("jump");
             m_jump = true;
             }
         // transform.localPosition += new Vector3(moveX, 0, 0) * Time.deltaTime * moveSpeed;
         // transform.localPosition += new Vector3(0, jump, 0) * Time.deltaTime * jumpHeight;
         if (attack > 0.9f && !m_attack) {
-            Debug.Log("Attack");
+            // Debug.Log("Attack");
             m_attack = true;
         }
         if (crouch > 0.9f && !m_crouch) {
-            Debug.Log("crouch");
+            // Debug.Log("crouch");
             m_crouch = true;
             }
         if (block > 0.9f && !m_block) {
-            Debug.Log("block");
+            // Debug.Log("block");
             m_block = true;
             }
         if (roll > 0.9f && !m_roll) {
-            Debug.Log("roll");
+            // Debug.Log("roll");
             m_roll = true;
             }
-        if (uncrouch > 0.9f && m_crouch) {
-            Debug.Log("uncrouch");
-            m_crouch = false;
-            }
-        if (unblock > 0.9f && m_block) {
-            Debug.Log("unblock");
-            m_block = false;
-            }
-        if (unroll > 0.9f && m_roll) {
-            Debug.Log("unroll");
-            m_roll = false;
-            }
-        if (unjump > 0.9f && m_jump) {
-            Debug.Log("unroll");
-            m_jump = false;
-            }
-        if (unattack > 0.9f && m_attack) {
-            Debug.Log("unroll");
-            m_attack = false;
-            }
+        // if (uncrouch > 0.9f && m_crouch) {
+        //     Debug.Log("uncrouch");
+        //     m_crouch = false;
+        //     }
+        // if (unblock > 0.9f && m_block) {
+        //     Debug.Log("unblock");
+        //     m_block = false;
+        //     }
+        // if (unroll > 0.9f && m_roll) {
+        //     Debug.Log("unroll");
+        //     m_roll = false;
+        //     }
+        // if (unjump > 0.9f && m_jump) {
+        //     Debug.Log("unroll");
+        //     m_jump = false;
+        //     }
+        // if (unattack > 0.9f && m_attack) {
+        //     Debug.Log("unroll");
+        //     m_attack = false;
+        //     }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<Goal>(out Goal goal)) {
-            SetReward(+1f);
-            EndEpisode();
-        }
         if (other.TryGetComponent<Wall>(out Wall wall)) {
-            SetReward(-1f);
+            Debug.Log("Hit wall");
+            AddReward(-1f);
+            otherScript.EndEpisode();
             EndEpisode();
         }
     }
@@ -149,6 +171,8 @@ public class FighterAIAgent : Agent, Player
             // Debug.Log(m_knockback);
             actions.m_body2d.velocity = new Vector2(inputX * actions.m_speed, actions.m_body2d.velocity.y);
         }
+        if (actions.m_rolling) 
+            return;
         if (m_block && !actions.m_animator.GetBool("Crouch")) 
         {
             actions.block();
@@ -161,7 +185,7 @@ public class FighterAIAgent : Agent, Player
         {
             if (m_attack && actions.m_timeSinceAttack > 0.25f)
             {
-                actions.attackPlayer(enemy);
+                actions.attack(enemy);
                 // m_attack = false;
             }
             else if (m_crouch && actions.m_grounded) 
@@ -172,7 +196,7 @@ public class FighterAIAgent : Agent, Player
             {
                 actions.uncrouch();
             }
-            else if (m_roll && !actions.m_rolling)
+            else if (m_roll && !actions.m_rolling && actions.m_grounded)
             {
                 actions.roll();
             }
@@ -184,7 +208,7 @@ public class FighterAIAgent : Agent, Player
             {
                 // m_jump = false;
                 actions.jump();
-                Debug.Log("reached");
+                // Debug.Log("reached");
             }
             else if (Mathf.Abs(inputX) > Mathf.Epsilon)
             {
@@ -204,6 +228,20 @@ public class FighterAIAgent : Agent, Player
             // Debug.Log(m_animator.GetBool("Crouch") );
             actions.m_body2d.velocity = new Vector2(0, actions.m_body2d.velocity.y);
         }
+        // if (actions.currentHealth <= 0) {
+        //     SetReward(-1f);
+        //     EndEpisode();
+        // }
 
+    }
+
+    public void giveReward(float reward) {
+        // if (reward > 0.0000001f)
+        //     Debug.Log(reward);
+        AddReward(reward);
+    }
+
+    public void nextEpisode() {
+        EndEpisode();
     }
 }

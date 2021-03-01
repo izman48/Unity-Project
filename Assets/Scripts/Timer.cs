@@ -12,26 +12,52 @@ public class Timer : MonoBehaviour
     public HealthBar player1;
     public HealthBar player2;
 
+    public GameObject player1Obj;
+    public GameObject player2Obj;
+    private float time_taken_reward = -0.0003f;
+    private float oldTime;
+
     void Start()
     {
         timeLeft = startTime;
+        oldTime = timeLeft;
+    }
+
+    public void Reset()
+    {
+        timeLeft = startTime;
+        oldTime = timeLeft;
     }
 
     void Update()
     {
+        
         timeLeft -= Time.deltaTime;
+        if (oldTime - timeLeft > 1) {
+            player1Obj.GetComponent<FighterAIAgent>().giveReward(time_taken_reward);
+            oldTime = timeLeft;
+        }
         startText.text = (timeLeft).ToString("0");
         if (timeLeft < 0)
         {
             //Do something useful or Load a new game scene depending on your use-case
             if (player1.GetHealth() > player2.GetHealth()) {
                 Debug.Log("Player 1 WINS");
+                player1Obj.GetComponent<FighterAIAgent>().giveReward(+1f);
+                player2Obj.GetComponent<FighterAIAgent>().giveReward(-1f);
             } else if (player1.GetHealth() < player2.GetHealth()) {
                 Debug.Log("Player 2 WINS");
+                player2Obj.GetComponent<FighterAIAgent>().giveReward(1f);
+                player1Obj.GetComponent<FighterAIAgent>().giveReward(-1f);
             } else {
                 Debug.Log("DRAW");
+                player1Obj.GetComponent<FighterAIAgent>().giveReward(0.0001f);
+                player2Obj.GetComponent<FighterAIAgent>().giveReward(0.0001f);
             }
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Reset();
+            player2Obj.GetComponent<FighterAIAgent>().EndEpisode();
+            player1Obj.GetComponent<FighterAIAgent>().EndEpisode();
         }
     }
 }
