@@ -65,8 +65,13 @@ public class HeroKnightActions : MonoBehaviour
     public void Reset()
     {
         // Debug.Log("Reset");
-        jump();
-        // m_animator.SetTrigger("Idle");
+        // this.enabled = true;
+        // jump();
+        // m_animator.SetTrigger("IdleBlock");
+        crouch();
+        uncrouch();
+        // checkGrounded();
+        // checkFalling();
         m_body2d = GetComponent<Rigidbody2D>();
         m_hitbox = GetComponent<BoxCollider2D>();
         // player = GetComponent<Player>();
@@ -114,13 +119,14 @@ public class HeroKnightActions : MonoBehaviour
         
     }
 
-    public void knockback(int playerNum) {
-        TakeDamage(attackDamage/4, playerNum);
+    public void knockback() {
+        TakeDamage(attackDamage/4);
         m_body2d.velocity = new Vector2(m_facingDirection*-5, 1);
         m_knockback = 0.0f;
     }
 
     public void jump() {
+        // Debug.Log("jumped");
         parentScript.giveReward(jump_reward);
         jump_reward *= 0.1f;
         m_animator.SetTrigger("Jump");
@@ -131,13 +137,17 @@ public class HeroKnightActions : MonoBehaviour
     }
 
     public void roll() {
+        // Debug.Log("rolled");
         parentScript.giveReward(roll_reward);
         roll_reward *= 0.1f;
         m_rolling = true;
         m_animator.SetTrigger("Roll");
         m_hitbox.offset = new Vector2(0.0f, 0.462f);
         m_hitbox.size = new Vector2(0.73f, 0.8f);
-        m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
+        m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, 0);
+        checkGrounded();
+
+        checkFalling();
     }
 
     public void crouch() {
@@ -201,7 +211,7 @@ public class HeroKnightActions : MonoBehaviour
                 e.block_reward *= 0.1f;
 
                 m_animator.SetTrigger("Hurt");
-                knockback(parentScript.playerID);
+                knockback();
                 m_timeSinceAttack = 0.0f;
                 return;
             } else {
@@ -209,7 +219,7 @@ public class HeroKnightActions : MonoBehaviour
                 parentScript.giveReward(attack_reward);
                 attack_reward *= 0.1f;
 
-                e.TakeDamage(attackDamage, player.playerID); // how much damage and who is taking it
+                e.TakeDamage(attackDamage); // how much damage and who is taking it
                 e.m_animator.SetBool("IdleBlock", false);
                 m_rolling = false;
                 // if (e.currentHealth <= 0) {
@@ -228,93 +238,93 @@ public class HeroKnightActions : MonoBehaviour
                 m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
         
     }
-    public void attackPlayer(Collider2D enemy) {
-        // When Enemy Attacks Player
+    // public void attackPlayer(Collider2D enemy) {
+    //     // When Enemy Attacks Player
 
         
-        m_currentAttack++;
+    //     m_currentAttack++;
 
-        // Loop back to one after third attack
-        if (m_currentAttack > 3)
-            m_currentAttack = 1;
+    //     // Loop back to one after third attack
+    //     if (m_currentAttack > 3)
+    //         m_currentAttack = 1;
 
-        // Reset Attack combo if time since last attack is too large
-        if (m_timeSinceAttack > 1.0f)
-            m_currentAttack = 1;
+    //     // Reset Attack combo if time since last attack is too large
+    //     if (m_timeSinceAttack > 1.0f)
+    //         m_currentAttack = 1;
 
-        if (enemy) {
-            Debug.Log("We hit " + enemy.name);
-            Player1 player = enemy.GetComponent<Player1>();
-            HeroKnightActions e = player.actions;
-            if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
-                m_animator.SetTrigger("Hurt");
-                knockback(2);
-                m_timeSinceAttack = 0.0f;
-                return;
-            } else {
+    //     if (enemy) {
+    //         Debug.Log("We hit " + enemy.name);
+    //         Player1 player = enemy.GetComponent<Player1>();
+    //         HeroKnightActions e = player.actions;
+    //         if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
+    //             m_animator.SetTrigger("Hurt");
+    //             knockback(2);
+    //             m_timeSinceAttack = 0.0f;
+    //             return;
+    //         } else {
                 
-                e.TakeDamage(attackDamage, 1); // how much damage and who is taking it
-                e.m_animator.SetBool("IdleBlock", false);
-                m_rolling = false;
-                // if (e.currentHealth <= 0) {
-                //     Debug.Log("BOT WINS");
-                //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                // }
-            }
+    //             e.TakeDamage(attackDamage, 1); // how much damage and who is taking it
+    //             e.m_animator.SetBool("IdleBlock", false);
+    //             m_rolling = false;
+    //             // if (e.currentHealth <= 0) {
+    //             //     Debug.Log("BOT WINS");
+    //             //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //             // }
+    //         }
             
-        }
-        // Call one of three attack animations "Attack1", "Attack2", "Attack3"
-        m_animator.SetTrigger("Attack" + m_currentAttack);
+    //     }
+    //     // Call one of three attack animations "Attack1", "Attack2", "Attack3"
+    //     m_animator.SetTrigger("Attack" + m_currentAttack);
 
-        // Reset timer
-        m_timeSinceAttack = 0.0f;
-        if (m_grounded)
-                m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
-    }
+    //     // Reset timer
+    //     m_timeSinceAttack = 0.0f;
+    //     if (m_grounded)
+    //             m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
+    // }
 
-    public void attackEnemy(Collider2D enemy) {
-        // Player attacks enemy
+    // public void attackEnemy(Collider2D enemy) {
+    //     // Player attacks enemy
         
 
-        m_currentAttack++;
+    //     m_currentAttack++;
 
-        // Loop back to one after third attack
-        if (m_currentAttack > 3)
-            m_currentAttack = 1;
+    //     // Loop back to one after third attack
+    //     if (m_currentAttack > 3)
+    //         m_currentAttack = 1;
 
-        // Reset Attack combo if time since last attack is too large
-        if (m_timeSinceAttack > 1.0f)
-            m_currentAttack = 1;
+    //     // Reset Attack combo if time since last attack is too large
+    //     if (m_timeSinceAttack > 1.0f)
+    //         m_currentAttack = 1;
 
-        if (enemy) {
-            Debug.Log("We hit " + enemy.name);
-            Player2 player = enemy.GetComponent<Player2>();
+    //     if (enemy) {
+    //         Debug.Log("We hit " + enemy.name);
+    //         Player2 player = enemy.GetComponent<Player2>();
 
-            HeroKnightActions e = player.actions;
-            if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
-                m_animator.SetTrigger("Hurt");
-                knockback(1);
-                m_timeSinceAttack = 0.0f;
-                return;
-            } else {
-                e.TakeDamage(attackDamage, 2); // how much damage and who is taking it
-                e.m_animator.SetBool("IdleBlock", false);
-                m_rolling = false;
-                // if (e.currentHealth <= 0) {
-                //     Debug.Log("Player WINS");
-                //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                // }
-            }
+    //         HeroKnightActions e = player.actions;
+    //         if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
+    //             m_animator.SetTrigger("Hurt");
+    //             knockback(1);
+    //             m_timeSinceAttack = 0.0f;
+    //             return;
+    //         } else {
+    //             e.TakeDamage(attackDamage, 2); // how much damage and who is taking it
+    //             e.m_animator.SetBool("IdleBlock", false);
+    //             m_rolling = false;
+    //             // if (e.currentHealth <= 0) {
+    //             //     Debug.Log("Player WINS");
+    //             //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //             // }
+    //         }
             
-        }
-        // Call one of three attack animations "Attack1", "Attack2", "Attack3"
-        m_animator.SetTrigger("Attack" + m_currentAttack);
+    //     }
+    //     // Call one of three attack animations "Attack1", "Attack2", "Attack3"
+    //     m_animator.SetTrigger("Attack" + m_currentAttack);
 
-        // Reset timer
-        m_timeSinceAttack = 0.0f;
-        if (m_grounded)
-                m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
-    }
+    //     // Reset timer
+    //     m_timeSinceAttack = 0.0f;
+    //     if (m_grounded)
+    //             m_body2d.velocity = new Vector2(0, m_body2d.velocity.y);
+    // }
 
     public void faceDirection(float inputX) {
         if (inputX > 0)
@@ -360,10 +370,10 @@ public class HeroKnightActions : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage, int playerNum) {
-        if (playerNum == parentScript.playerID) {
+    public void TakeDamage(int damage) {
+        // if (playerNum == parentScript.playerID) {
             parentScript.giveReward(-0.01f); 
-        }
+        // }
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         if (currentHealth > 0)
@@ -371,22 +381,24 @@ public class HeroKnightActions : MonoBehaviour
         if (currentHealth <= 0 && !finished) {
             // Debug.Log(parentScript);
             // parentScript.giveReward(-1f);
-            StartCoroutine(DieRoutine(playerNum));
+            StartCoroutine(DieRoutine());
             
         }
 
     }
 
-    IEnumerator DieRoutine(int playerNum)
+    IEnumerator DieRoutine()
     {
         // Debug.Log("DEAD");
-        if (playerNum == 2) {playerNum = 1;} else {playerNum = 2;}
+        int playerNum = 0;
+        if (parentScript.playerID == 2) {playerNum = 1;} else {playerNum = 2;}
         m_animator.SetBool("noBlood", m_noBlood);
         m_animator.SetTrigger("Death");
         this.enabled = false;
         finished = true;
         yield return new WaitForSeconds(1);
         Debug.Log("PLAYER " + playerNum + " WINS");
+        FighterAIAgent enemyPlayer = enemy.GetComponent<FighterAIAgent>();
         // if (playerNum == 2) {
         //     FighterAIAgent script = GetComponent<FighterAIAgent>();
         //     script.SetReward(+1f);
@@ -394,16 +406,14 @@ public class HeroKnightActions : MonoBehaviour
         //     FighterAIAgent script = GetComponent<FighterAIAgent>();
         //     script.SetReward(-1f);
         // }
-        if (playerNum == parentScript.playerID) {
-            parentScript.giveReward(-1f);
-        } else {
-            // give oponent positive rewards
-            parentScript.giveReward(+1f);
-        }
+        // if (playerNum == parentScript.playerID) {
+        parentScript.SetReward(-1f);
+        enemyPlayer.SetReward(+1f);
+        // } 
         timer.Reset();
 
-        FighterAIAgent player = enemy.GetComponent<FighterAIAgent>();
-        player.nextEpisode();
+        
+        enemyPlayer.nextEpisode();
         parentScript.nextEpisode();
 
         // SceneManager.LoadScene(SceneManager.GetActiveScene().name);

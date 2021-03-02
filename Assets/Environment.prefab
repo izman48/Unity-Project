@@ -1242,7 +1242,6 @@ GameObject:
   - component: {fileID: 3279290367891863699}
   - component: {fileID: 3279290367891863698}
   - component: {fileID: 2174227148047308646}
-  - component: {fileID: 3279290367891863703}
   - component: {fileID: 3279290367891863700}
   - component: {fileID: 590628205361396760}
   - component: {fileID: 4477054527817599279}
@@ -1421,19 +1420,6 @@ MonoBehaviour:
   tilemap: {fileID: 3279290369381507304}
   playerID: 1
   actions: {fileID: 3279290367891863700}
---- !u!114 &3279290367891863703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3279290367891863709}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d33085115e7ab274ba48855261136e04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actions: {fileID: 0}
 --- !u!114 &3279290367891863700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1491,17 +1477,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 207
+    VectorObservationSize: 213
     NumStackedVectorObservations: 1
-    VectorActionSize: 06000000
+    m_ActionSpec:
+      m_NumContinuousActions: 1
+      BranchSizes: 0200000002000000020000000200000002000000
+    VectorActionSize: 
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
+    hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: FighterAIAgent
   TeamId: 1
   m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
 --- !u!114 &4477054527817599279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2605,7 +2597,6 @@ GameObject:
   - component: {fileID: 3279290369168803738}
   - component: {fileID: 3279290369168803719}
   - component: {fileID: 3279290369168803718}
-  - component: {fileID: 3279290369168803716}
   - component: {fileID: 3279290369168803717}
   - component: {fileID: 3279290369168803714}
   - component: {fileID: 3279290369168803715}
@@ -2749,19 +2740,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.73, y: 1.2}
   m_EdgeRadius: 0
---- !u!114 &3279290369168803716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3279290369168803725}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b6906e69e0dc8d4d90a89f99a2d9dd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actions: {fileID: 0}
 --- !u!114 &3279290369168803717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2853,17 +2831,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 207
+    VectorObservationSize: 213
     NumStackedVectorObservations: 1
-    VectorActionSize: 06000000
+    m_ActionSpec:
+      m_NumContinuousActions: 1
+      BranchSizes: 0200000002000000020000000200000002000000
+    VectorActionSize: 
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
+    hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: FighterAIAgent
   TeamId: 2
   m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
 --- !u!1 &3279290369374005702
 GameObject:
   m_ObjectHideFlags: 0

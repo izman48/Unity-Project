@@ -1,0 +1,49 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1614681940",
+        "python_version": "3.7.9 (tags/v3.7.9:13c94747c7, Aug 17 2020, 18:58:18) [MSC v.1900 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\IesaW\\Fighter\\venv\\Scripts\\mlagents-learn config\\FighterAI.yaml --run-id TestParams",
+        "mlagents_version": "0.23.0",
+        "mlagents_envs_version": "0.23.0",
+        "communication_protocol_version": "1.3.0",
+        "pytorch_version": "1.7.0+cu110",
+        "numpy_version": "1.18.5",
+        "end_time_seconds": "1614681950"
+    },
+    "total": 9.793913799999999,
+    "count": 1,
+    "self": 0.010082099999998206,
+    "children": {
+        "run_training.setup": {
+            "total": 0.008620500000000142,
+            "count": 1,
+            "self": 0.008620500000000142
+        },
+        "TrainerController.start_learning": {
+            "total": 9.775211200000001,
+            "count": 1,
+            "self": 0.00020350000000135537,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 9.1630855,
+                    "count": 1,
+                    "self": 9.1630855
+                },
+                "TrainerController._save_models": {
+                    "total": 0.6119222000000004,
+                    "count": 1,
+                    "self": 0.025508499999999046,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.5864137000000014,
+                            "count": 1,
+                            "self": 0.5864137000000014
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

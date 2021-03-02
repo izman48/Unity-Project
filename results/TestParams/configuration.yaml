@@ -5,11 +5,11 @@ behaviors:
     hyperparameters:
       batch_size: 1024
       buffer_size: 10240
-      learning_rate: 0.0003
-      beta: 0.005
+      learning_rate: 0.0005
+      beta: 0.0005
       epsilon: 0.2
       lambd: 0.95
-      num_epoch: 3
+      num_epoch: 5
       learning_rate_schedule: linear
     network_settings:
       normalize: false
@@ -17,16 +17,21 @@ behaviors:
       num_layers: 2
       vis_encode_type: simple
       memory:
-        sequence_length: 64
+        sequence_length: 32
         memory_size: 256
     reward_signals:
       extrinsic:
         gamma: 0.99
         strength: 1.0
-    init_path: null
+      curiosity:
+        gamma: 0.99
+        strength: 0.02
+        encoding_size: 256
+        learning_rate: 0.0003
+    init_path: ./results/TestParams/FighterAIAgent
     keep_checkpoints: 5
     checkpoint_interval: 50000
-    max_steps: 500000
+    max_steps: 10000000
     time_horizon: 64
     summary_freq: 10000
     threaded: true
@@ -55,11 +60,11 @@ engine_settings:
   no_graphics: false
 environment_parameters: null
 checkpoint_settings:
-  run_id: ppo
+  run_id: TestParams
   initialize_from: null
   load_model: false
   resume: false
-  force: true
+  force: false
   train_model: false
   inference: false
 debug: false

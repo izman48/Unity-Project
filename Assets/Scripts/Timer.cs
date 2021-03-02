@@ -43,16 +43,16 @@ public class Timer : MonoBehaviour
             //Do something useful or Load a new game scene depending on your use-case
             if (player1.GetHealth() > player2.GetHealth()) {
                 Debug.Log("Player 1 WINS");
-                player1Obj.GetComponent<FighterAIAgent>().giveReward(+1f);
-                player2Obj.GetComponent<FighterAIAgent>().giveReward(-1f);
+                player1Obj.GetComponent<FighterAIAgent>().SetReward(+1f);
+                player2Obj.GetComponent<FighterAIAgent>().SetReward(-1f);
             } else if (player1.GetHealth() < player2.GetHealth()) {
                 Debug.Log("Player 2 WINS");
-                player2Obj.GetComponent<FighterAIAgent>().giveReward(1f);
-                player1Obj.GetComponent<FighterAIAgent>().giveReward(-1f);
+                player2Obj.GetComponent<FighterAIAgent>().SetReward(1f);
+                player1Obj.GetComponent<FighterAIAgent>().SetReward(-1f);
             } else {
                 Debug.Log("DRAW");
-                player1Obj.GetComponent<FighterAIAgent>().giveReward(0.0001f);
-                player2Obj.GetComponent<FighterAIAgent>().giveReward(0.0001f);
+                player1Obj.GetComponent<FighterAIAgent>().SetReward(0f);
+                player2Obj.GetComponent<FighterAIAgent>().SetReward(0f);
             }
             // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Reset();

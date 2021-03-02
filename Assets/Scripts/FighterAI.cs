@@ -7,7 +7,7 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 
 
-public class FighterAIAgent : Agent
+public class FighterAI : Agent
 {
     [SerializeField] private Transform target;
     public Tilemap tilemap;        
@@ -47,18 +47,18 @@ public class FighterAIAgent : Agent
         ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
         if (playerID == 2){
             continousActions[0] = Input.GetAxisRaw("Horizontal2");
-            discreteActions[0] = Input.GetButton("Jump") ? 1 : 0;
-            discreteActions[1] = Input.GetButton("Crouch") ? 1 : 0;
-            discreteActions[2] = Input.GetButton("Attack") ? 1 : 0;
-            discreteActions[3] = Input.GetButton("Block") ? 1 : 0;
-            discreteActions[4] = Input.GetButton("Roll") ? 1 : 0;
+            discreteActions[1] = Input.GetButton("Jump") ? 1 : 0;
+            discreteActions[2] = Input.GetButton("Crouch") ? 1 : 0;
+            discreteActions[3] = Input.GetButton("Attack") ? 1 : 0;
+            discreteActions[4] = Input.GetButton("Block") ? 1 : 0;
+            discreteActions[5] = Input.GetButton("Roll") ? 1 : 0;
         } else {
-            continousActions[0] = Input.GetAxisRaw("Horizontal1");
-            discreteActions[0] = Input.GetButton("Jump2") ? 1 : 0;
-            discreteActions[1] = Input.GetButton("Crouch2") ? 1 : 0;
-            discreteActions[2] = Input.GetButton("Attack2") ? 1 : 0;
-            discreteActions[3] = Input.GetButton("Block2") ? 1 : 0;
-            discreteActions[4] = Input.GetButton("Roll2") ? 1 : 0;
+            continousActions[0] = Input.GetAxisRaw("Horizontal2");
+            discreteActions[1] = Input.GetButton("Jump") ? 1 : 0;
+            discreteActions[2] = Input.GetButton("Crouch") ? 1 : 0;
+            discreteActions[3] = Input.GetButton("Attack") ? 1 : 0;
+            discreteActions[4] = Input.GetButton("Block") ? 1 : 0;
+            discreteActions[5] = Input.GetButton("Roll") ? 1 : 0;
         }
         // actionsOut[6] = Input.GetButton("Crouch") ? 0f : 1f;
         // actionsOut[7] = Input.GetButton("Block") ? 0f : 1f;
@@ -87,25 +87,24 @@ public class FighterAIAgent : Agent
         foreach( Vector3 place in availablePlaces) {
             sensor.AddObservation(place); /*67x3*/
         }
-        FighterAIAgent enemyPlayer = target.GetComponent<FighterAIAgent>();
-        sensor.AddObservation(enemyPlayer.inputX);
-        sensor.AddObservation(enemyPlayer.m_attack);
-        sensor.AddObservation(enemyPlayer.m_jump);
-        sensor.AddObservation(enemyPlayer.m_block);
-        sensor.AddObservation(enemyPlayer.m_crouch);
-        sensor.AddObservation(enemyPlayer.m_roll);
-
     }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
         float moveX = actions.ContinuousActions[0];
         float jump = actions.DiscreteActions[0];
-        float crouch = actions.DiscreteActions[1];
-        float attack = actions.DiscreteActions[2];
-        float block = actions.DiscreteActions[3];
-        float roll = actions.DiscreteActions[4];
-
+        float crouch = actions.DiscreteActions[0];
+        float attack = actions.DiscreteActions[0];
+        float block = actions.DiscreteActions[0];
+        float roll = actions.DiscreteActions[0];
+        // float uncrouch = vectorAction[6];
+        // float unblock = vectorAction[7];
+        // float unroll = vectorAction[8];
+        // float unjump = vectorAction[9];
+        // float unattack = vectorAction[10];
+        // float moveY = vectorAction[1];
+        // float moveSpeed = 4f;
+        // float jumpHeight = 7.5f;
         inputX = moveX;
         if (jump == 0) m_jump = false;
         if (attack == 0) m_attack = false;
@@ -113,7 +112,7 @@ public class FighterAIAgent : Agent
         if (roll == 0) m_roll = false;
         if (crouch == 0) m_crouch = false;
 
-        if (jump == 1) {
+        if (jump == 1 && !m_jump) {
             // Debug.Log("jump");
             m_jump = true;
             }
@@ -134,14 +133,34 @@ public class FighterAIAgent : Agent
         if (roll == 1 && !m_roll) {
             // Debug.Log("roll");
             m_roll = true;
-        }
+            }
+        // if (uncrouch > 0.9f && m_crouch) {
+        //     Debug.Log("uncrouch");
+        //     m_crouch = false;
+        //     }
+        // if (unblock > 0.9f && m_block) {
+        //     Debug.Log("unblock");
+        //     m_block = false;
+        //     }
+        // if (unroll > 0.9f && m_roll) {
+        //     Debug.Log("unroll");
+        //     m_roll = false;
+        //     }
+        // if (unjump > 0.9f && m_jump) {
+        //     Debug.Log("unroll");
+        //     m_jump = false;
+        //     }
+        // if (unattack > 0.9f && m_attack) {
+        //     Debug.Log("unroll");
+        //     m_attack = false;
+        //     }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent<Wall>(out Wall wall)) {
             Debug.Log("Hit wall");
-            SetReward(-1f);
+            AddReward(-1f);
             otherScript.EndEpisode();
             EndEpisode();
         }
