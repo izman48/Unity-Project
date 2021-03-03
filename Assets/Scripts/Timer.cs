@@ -51,8 +51,8 @@ public class Timer : MonoBehaviour
                 player1Obj.GetComponent<FighterAIAgent>().SetReward(-1f);
             } else {
                 Debug.Log("DRAW");
-                player1Obj.GetComponent<FighterAIAgent>().SetReward(0f);
-                player2Obj.GetComponent<FighterAIAgent>().SetReward(0f);
+                player1Obj.GetComponent<FighterAIAgent>().SetReward(-0.25f);
+                player2Obj.GetComponent<FighterAIAgent>().SetReward(-0.25f);
             }
             // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Reset();

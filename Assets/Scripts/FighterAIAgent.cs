@@ -12,6 +12,7 @@ public class FighterAIAgent : Agent
     [SerializeField] private Transform target;
     public Tilemap tilemap;        
     private List<Vector3> availablePlaces;
+    public SpriteRenderer background;
     public int playerID;
     private FighterAIAgent otherScript;
     public HeroKnightActions actions;
@@ -21,6 +22,9 @@ public class FighterAIAgent : Agent
     private bool m_jump = false;
     private bool m_attack = false;
     private float inputX = 0f;
+
+    private float distanceReward = 0.005f;
+    public Timer timer;
 
     void Awake()
     {
@@ -75,9 +79,11 @@ public class FighterAIAgent : Agent
         } else {
             transform.localPosition = new Vector3(3.3f, -3.8f, 0);
         }
+        // distanceReward = 0.01f;
         // target.localPosition = new Vector3(Random.Range(-7f, 0f), Random.Range(4f, -3.7f), 0);
         // actions = GetComponent<HeroKnightActions>();
         actions.Reset();
+        timer.Reset();
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -152,6 +158,12 @@ public class FighterAIAgent : Agent
     {
         Collider2D enemy = Physics2D.OverlapBox(actions.m_swordHitBox.position, actions.m_swordHitBox.localScale, 0.0f, actions.enemyLayer);
         actions.faceDirection(inputX);
+        float boundsWidth = (background.bounds.max - background.bounds.min).magnitude;
+        float dist = 1 - Vector3.Distance(target.transform.localPosition, transform.localPosition)/boundsWidth;
+        // AddReward(dist*distanceReward);
+        
+        
+        
 
         // Move
         if (!actions.m_rolling && actions.m_timeSinceAttack > 0.25f){
