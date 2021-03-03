@@ -32,11 +32,11 @@ public class HeroKnightActions : MonoBehaviour
     public bool                finished;
     public float               m_knockback = 2.0f;
     public float               m_knockback_cooldown = 0.5f;
-    private float jump_reward = 0.01f;
-    private float attack_reward = 0.01f;
-    public float block_reward = 0.02f;
-    private float crouch_reward = 0.01f;
-    private float roll_reward = 0.001f;
+    private float jump_reward = 0f;
+    private float attack_reward = 0f;
+    public float block_reward = 0f;
+    private float crouch_reward = 0f;
+    private float roll_reward = 0f;
     public Timer timer;
 
     public float sword_height;

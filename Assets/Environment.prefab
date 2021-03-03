@@ -1418,8 +1418,10 @@ MonoBehaviour:
   MaxStep: 5000
   target: {fileID: 3279290368155839298}
   tilemap: {fileID: 3279290369381507304}
+  background: {fileID: 3279290367687187184}
   playerID: 1
   actions: {fileID: 3279290367891863700}
+  timer: {fileID: 3279290368263240416}
 --- !u!114 &3279290367891863700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1488,7 +1490,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: FighterAIAgent
   TeamId: 1
   m_UseChildSensors: 1
@@ -2816,8 +2818,10 @@ MonoBehaviour:
   MaxStep: 5000
   target: {fileID: 3279290368681896850}
   tilemap: {fileID: 3279290369381507304}
+  background: {fileID: 3279290367687187184}
   playerID: 2
   actions: {fileID: 0}
+  timer: {fileID: 3279290368263240416}
 --- !u!114 &3279290369168803712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2842,7 +2846,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: FighterAIAgent
   TeamId: 2
   m_UseChildSensors: 1
