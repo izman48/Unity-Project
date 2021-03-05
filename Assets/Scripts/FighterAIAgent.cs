@@ -10,6 +10,7 @@ using Unity.MLAgents.Sensors;
 public class FighterAIAgent : Agent
 {
     [SerializeField] private Transform target;
+    [SerializeField] private Transform enemy;
     public Tilemap tilemap;        
     private List<Vector3> availablePlaces;
     public SpriteRenderer background;
@@ -23,21 +24,27 @@ public class FighterAIAgent : Agent
     private bool m_attack = false;
     private float inputX = 0f;
 
+<<<<<<< HEAD
     private float distanceReward = 0.005f;
+=======
+    private float distanceReward = 0.00f;
+>>>>>>> must_merge
     public Timer timer;
 
     void Awake()
     {
         actions = GetComponent<HeroKnightActions>();
-        otherScript = target.GetComponent<FighterAIAgent>();
+        otherScript = enemy.GetComponent<FighterAIAgent>();
         availablePlaces = new List<Vector3>();
         int count = 0;
         // controls = new PlayerActions();
         foreach (var position in tilemap.cellBounds.allPositionsWithin) {
-            if (!tilemap.HasTile(position)) {
+            Vector3Int localPlace = new Vector3Int(position.x, position.y, position.z);
+            if (!tilemap.HasTile(localPlace)) {
                 continue;
             }
-            Vector3 place = tilemap.CellToWorld(position);
+            
+            Vector3 place = tilemap.CellToWorld(localPlace);
             availablePlaces.Add(place);
             count++;
             // Debug.Log(place);
@@ -76,11 +83,17 @@ public class FighterAIAgent : Agent
 
         if (playerID == 1) {
             transform.localPosition = new Vector3(-5.8f, -3.8f, 0);
+            enemy.localPosition = new Vector3(3.3f, -3.8f, 0);
         } else {
             transform.localPosition = new Vector3(3.3f, -3.8f, 0);
+            enemy.localPosition = new Vector3(-5.8f, -3.8f, 0);
         }
         // distanceReward = 0.01f;
+<<<<<<< HEAD
         // target.localPosition = new Vector3(Random.Range(-7f, 0f), Random.Range(4f, -3.7f), 0);
+=======
+        target.localPosition = new Vector3(-0.85f, -2.46f, 0);
+>>>>>>> must_merge
         // actions = GetComponent<HeroKnightActions>();
         actions.Reset();
         timer.Reset();
@@ -90,16 +103,23 @@ public class FighterAIAgent : Agent
     {
         sensor.AddObservation(transform.localPosition);
         sensor.AddObservation(target.localPosition);
+        sensor.AddObservation(enemy.localPosition);
         foreach( Vector3 place in availablePlaces) {
             sensor.AddObservation(place); /*67x3*/
         }
-        FighterAIAgent enemyPlayer = target.GetComponent<FighterAIAgent>();
+        sensor.AddObservation(timer.timeLeft);
+        sensor.AddObservation(actions.currentHealth);
+        
+        FighterAIAgent enemyPlayer = enemy.GetComponent<FighterAIAgent>();
         sensor.AddObservation(enemyPlayer.inputX);
         sensor.AddObservation(enemyPlayer.m_attack);
         sensor.AddObservation(enemyPlayer.m_jump);
         sensor.AddObservation(enemyPlayer.m_block);
         sensor.AddObservation(enemyPlayer.m_crouch);
         sensor.AddObservation(enemyPlayer.m_roll);
+        sensor.AddObservation(enemyPlayer.actions.currentHealth);
+        
+        
 
     }
 
@@ -107,9 +127,9 @@ public class FighterAIAgent : Agent
     {
         float moveX = actions.ContinuousActions[0];
         float jump = actions.DiscreteActions[0];
-        float crouch = actions.DiscreteActions[1];
-        float attack = actions.DiscreteActions[2];
-        float block = actions.DiscreteActions[3];
+        float crouch = 0f;
+        float attack = 0f;
+        float block = 0f;
         float roll = actions.DiscreteActions[4];
 
         inputX = moveX;
@@ -148,6 +168,14 @@ public class FighterAIAgent : Agent
         if (other.TryGetComponent<Wall>(out Wall wall)) {
             Debug.Log("Hit wall");
             SetReward(-1f);
+            // otherScript.SetReward(+1f);
+            // otherScript.EndEpisode();
+            EndEpisode();
+        } 
+        if (other.TryGetComponent<Goal>(out Goal goal)) {
+            Debug.Log("Hit goal");
+            SetReward(+1f);
+            otherScript.SetReward(-1f);
             otherScript.EndEpisode();
             EndEpisode();
         }
@@ -160,10 +188,17 @@ public class FighterAIAgent : Agent
         actions.faceDirection(inputX);
         float boundsWidth = (background.bounds.max - background.bounds.min).magnitude;
         float dist = 1 - Vector3.Distance(target.transform.localPosition, transform.localPosition)/boundsWidth;
+<<<<<<< HEAD
         // AddReward(dist*distanceReward);
         
         
         
+=======
+        AddReward(dist*distanceReward);
+        
+        
+        Vector3 sword = actions.m_swordHitBox.position;
+>>>>>>> must_merge
 
         // Move
         if (!actions.m_rolling && actions.m_timeSinceAttack > 0.25f){
@@ -184,6 +219,7 @@ public class FighterAIAgent : Agent
         {
             if (m_attack && actions.m_timeSinceAttack > 0.25f)
             {
+                // Debug.Log("Attacked at: " + sword + " ENEMY AT: " + target.transform.position);
                 actions.attack(enemy);
                 // m_attack = false;
             }
@@ -203,7 +239,7 @@ public class FighterAIAgent : Agent
             {
                 actions.uncrouch();
             }
-            else if (m_jump && actions.m_grounded)
+            else if (m_jump && actions.m_grounded && !m_attack)
             {
                 // m_jump = false;
                 actions.jump();

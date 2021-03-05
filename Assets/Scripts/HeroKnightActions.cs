@@ -32,11 +32,20 @@ public class HeroKnightActions : MonoBehaviour
     public bool                finished;
     public float               m_knockback = 2.0f;
     public float               m_knockback_cooldown = 0.5f;
+<<<<<<< HEAD
     private float jump_reward = 0f;
     private float attack_reward = 0f;
     public float block_reward = 0f;
     private float crouch_reward = 0f;
     private float roll_reward = 0f;
+=======
+    private float jump_reward = 0.00f;
+    private float attack_reward = 0.0f;
+    public float block_reward = 0.00f;
+    private float crouch_reward = 0f;
+    private float roll_reward = 0f;
+    private float damageTakenReward = -0.0f;
+>>>>>>> must_merge
     public Timer timer;
 
     public float sword_height;
@@ -65,18 +74,20 @@ public class HeroKnightActions : MonoBehaviour
     public void Reset()
     {
         // Debug.Log("Reset");
-        // this.enabled = true;
+        this.enabled = true;
         // jump();
-        // m_animator.SetTrigger("IdleBlock");
-        crouch();
-        uncrouch();
+        m_animator.SetTrigger("Reset");
+        m_rolling = false;
+        m_crouch = false;
+        // crouch();
+        // uncrouch();
         // checkGrounded();
         // checkFalling();
-        m_body2d = GetComponent<Rigidbody2D>();
-        m_hitbox = GetComponent<BoxCollider2D>();
+        // m_body2d = GetComponent<Rigidbody2D>();
+        // m_hitbox = GetComponent<BoxCollider2D>();
         // player = GetComponent<Player>();
-        m_swordHitBox = transform.Find("SwordHitBox").transform;
-        m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
+        // m_swordHitBox = transform.Find("SwordHitBox").transform;
+        // m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
         healthBar.SetMaxHealth(maxHealth); 
         finished = false;
         currentHealth = maxHealth;
@@ -128,7 +139,7 @@ public class HeroKnightActions : MonoBehaviour
     public void jump() {
         // Debug.Log("jumped");
         parentScript.giveReward(jump_reward);
-        jump_reward *= 0.1f;
+        // jump_reward *= 0.1f;
         m_animator.SetTrigger("Jump");
         m_grounded = false;
         m_animator.SetBool("Grounded", m_grounded);
@@ -187,7 +198,7 @@ public class HeroKnightActions : MonoBehaviour
         m_animator.SetBool("IdleBlock", false);
     }
 
-    public void attack(Collider2D enemy) {
+    public void attack(Collider2D enemyCollider) {
         // When Enemy Attacks Player
 
         
@@ -201,14 +212,15 @@ public class HeroKnightActions : MonoBehaviour
         if (m_timeSinceAttack > 1.0f)
             m_currentAttack = 1;
 
-        if (enemy) {
-            Debug.Log("We hit " + enemy.name);
+        // Debug.Log("reached");
+        if (enemyCollider) {
+            Debug.Log("We hit " + enemyCollider.name);
             FighterAIAgent player = enemy.GetComponent<FighterAIAgent>();
             HeroKnightActions e = player.actions;
             // if they block
             if (e.m_animator.GetBool("IdleBlock") && e.m_facingDirection != m_facingDirection) {
                 player.giveReward(e.block_reward);
-                e.block_reward *= 0.1f;
+                // e.block_reward *= 0.1f;
 
                 m_animator.SetTrigger("Hurt");
                 knockback();
@@ -217,11 +229,11 @@ public class HeroKnightActions : MonoBehaviour
             } else {
                 // they get hit
                 parentScript.giveReward(attack_reward);
-                attack_reward *= 0.1f;
+                // attack_reward *= 0.1f;
 
                 e.TakeDamage(attackDamage); // how much damage and who is taking it
                 e.m_animator.SetBool("IdleBlock", false);
-                m_rolling = false;
+                e.m_rolling = false;
                 // if (e.currentHealth <= 0) {
                 //     Debug.Log("BOT WINS");
                 //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -372,7 +384,7 @@ public class HeroKnightActions : MonoBehaviour
 
     public void TakeDamage(int damage) {
         // if (playerNum == parentScript.playerID) {
-            parentScript.giveReward(-0.01f); 
+            parentScript.giveReward(damageTakenReward); 
         // }
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

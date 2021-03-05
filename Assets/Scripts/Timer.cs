@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
 
     public GameObject player1Obj;
     public GameObject player2Obj;
-    private float time_taken_reward = -0.0003f;
+    private float time_taken_reward = -0.003f;
     private float oldTime;
 
     void Start()
@@ -35,6 +35,7 @@ public class Timer : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if (oldTime - timeLeft > 1) {
             player1Obj.GetComponent<FighterAIAgent>().giveReward(time_taken_reward);
+            player2Obj.GetComponent<FighterAIAgent>().giveReward(time_taken_reward);
             oldTime = timeLeft;
         }
         startText.text = (timeLeft).ToString("0");

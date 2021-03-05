@@ -1,0 +1,48 @@
+{
+    "FighterAIAgent": {
+        "checkpoints": [
+            {
+                "steps": 2649990,
+                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-2649990.onnx",
+                "reward": 0.8444345538262967,
+                "creation_time": 1614842225.3972979
+            },
+            {
+                "steps": 2699955,
+                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-2699955.onnx",
+                "reward": 1.4399017945218544,
+                "creation_time": 1614843400.9643857
+            },
+            {
+                "steps": 2749989,
+                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-2749989.onnx",
+                "reward": 1.466242500079366,
+                "creation_time": 1614844576.5032942
+            },
+            {
+                "steps": 2794789,
+                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-2794789.onnx",
+                "reward": 1.0661795735359192,
+                "creation_time": 1614845671.432945
+            },
+            {
+                "steps": 2794789,
+                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-2794789.onnx",
+                "reward": null,
+                "creation_time": 1614868889.4029953
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2794789,
+            "file_path": "results\\TestParams\\FighterAIAgent.onnx",
+            "reward": null,
+            "creation_time": 1614868889.4029953
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.23.0",
+        "torch_version": "1.7.0+cu110",
+        "tensorflow_version": -1
+    }
+}

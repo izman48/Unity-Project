@@ -144,7 +144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3279290367695176947
 Transform:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3279290367695176946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.209997, y: -2.509437, z: -4.7581186}
+  m_LocalPosition: {x: -0.85, y: -2.46, z: -4.7581186}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3279290369374005703}
@@ -1416,7 +1416,8 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 5000
-  target: {fileID: 3279290368155839298}
+  target: {fileID: 3279290367695176947}
+  enemy: {fileID: 3279290368155839298}
   tilemap: {fileID: 3279290369381507304}
   background: {fileID: 3279290367687187184}
   playerID: 1
@@ -1479,7 +1480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 213
+    VectorObservationSize: 219
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 1
@@ -1492,7 +1493,7 @@ MonoBehaviour:
   m_InferenceDevice: 1
   m_BehaviorType: 1
   m_BehaviorName: FighterAIAgent
-  TeamId: 1
+  TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_ObservableAttributeHandling: 0
@@ -2816,7 +2817,8 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 5000
-  target: {fileID: 3279290368681896850}
+  target: {fileID: 3279290367695176947}
+  enemy: {fileID: 3279290368681896850}
   tilemap: {fileID: 3279290369381507304}
   background: {fileID: 3279290367687187184}
   playerID: 2
@@ -2835,7 +2837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 213
+    VectorObservationSize: 219
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 1
@@ -2848,7 +2850,7 @@ MonoBehaviour:
   m_InferenceDevice: 1
   m_BehaviorType: 1
   m_BehaviorName: FighterAIAgent
-  TeamId: 2
+  TeamId: 1
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_ObservableAttributeHandling: 0
