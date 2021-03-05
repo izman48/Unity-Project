@@ -2,41 +2,41 @@
     "FighterAIAgent": {
         "checkpoints": [
             {
-                "steps": 12453,
-                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-12453.onnx",
-                "reward": -0.05899999978352491,
-                "creation_time": 1614763861.43777
+                "steps": 2649990,
+                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-2649990.onnx",
+                "reward": 0.8444345538262967,
+                "creation_time": 1614842225.3972979
             },
             {
-                "steps": 24100,
-                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-24100.onnx",
-                "reward": -0.0023584905660377358,
-                "creation_time": 1614764408.8227568
+                "steps": 2699955,
+                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-2699955.onnx",
+                "reward": 1.4399017945218544,
+                "creation_time": 1614843400.9643857
             },
             {
-                "steps": 25065,
-                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-25065.onnx",
-                "reward": -0.09456667042104527,
-                "creation_time": 1614764452.3877852
+                "steps": 2749989,
+                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-2749989.onnx",
+                "reward": 1.466242500079366,
+                "creation_time": 1614844576.5032942
             },
             {
-                "steps": 28666,
-                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-28666.onnx",
-                "reward": -0.4575548451882036,
-                "creation_time": 1614764557.2507513
+                "steps": 2794789,
+                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-2794789.onnx",
+                "reward": 1.0661795735359192,
+                "creation_time": 1614845671.432945
             },
             {
-                "steps": 36639,
-                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-36639.onnx",
-                "reward": -0.07410361962800023,
-                "creation_time": 1614764872.2935233
+                "steps": 2794789,
+                "file_path": "results\\TestParams\\FighterAIAgent\\FighterAIAgent-2794789.onnx",
+                "reward": null,
+                "creation_time": 1614868889.4029953
             }
         ],
         "final_checkpoint": {
-            "steps": 36639,
+            "steps": 2794789,
             "file_path": "results\\TestParams\\FighterAIAgent.onnx",
-            "reward": -0.07410361962800023,
-            "creation_time": 1614764872.2935233
+            "reward": null,
+            "creation_time": 1614868889.4029953
         }
     },
     "metadata": {
