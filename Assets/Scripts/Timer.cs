@@ -28,7 +28,9 @@ public class Timer : MonoBehaviour
         timeLeft = startTime;
         oldTime = timeLeft;
     }
-
+    public float getTime() {
+        return timeLeft;
+    }
     void Update()
     {
         
@@ -44,11 +46,11 @@ public class Timer : MonoBehaviour
             //Do something useful or Load a new game scene depending on your use-case
             if (player1.GetHealth() > player2.GetHealth()) {
                 Debug.Log("Player 1 WINS");
-                player1Obj.GetComponent<FighterAIAgent>().SetReward(+1f);
+                player1Obj.GetComponent<FighterAIAgent>().SetReward(+1);
                 player2Obj.GetComponent<FighterAIAgent>().SetReward(-1f);
             } else if (player1.GetHealth() < player2.GetHealth()) {
                 Debug.Log("Player 2 WINS");
-                player2Obj.GetComponent<FighterAIAgent>().SetReward(1f);
+                player2Obj.GetComponent<FighterAIAgent>().SetReward(+1f);
                 player1Obj.GetComponent<FighterAIAgent>().SetReward(-1f);
             } else {
                 Debug.Log("DRAW");

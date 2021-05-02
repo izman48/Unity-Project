@@ -9,8 +9,8 @@ using Unity.MLAgents.Sensors;
 
 public class FighterAIAgent : Agent
 {
-    [SerializeField] private Transform target;
-    [SerializeField] private Transform enemy;
+    // [SerializeField] private Transform target;
+    public Transform enemy;
     public Tilemap tilemap;        
     private List<Vector3> availablePlaces;
     public SpriteRenderer background;
@@ -22,22 +22,18 @@ public class FighterAIAgent : Agent
     private bool m_block = false;
     private bool m_jump = false;
     private bool m_attack = false;
+    private bool m_passive = false;
     private float inputX = 0f;
 
-<<<<<<< HEAD
-    private float distanceReward = 0.005f;
-=======
-    private float distanceReward = 0.00f;
->>>>>>> must_merge
+    private float distanceReward = 0.01f;
     public Timer timer;
 
-    void Awake()
+    public override void Initialize()
     {
         actions = GetComponent<HeroKnightActions>();
         otherScript = enemy.GetComponent<FighterAIAgent>();
         availablePlaces = new List<Vector3>();
         int count = 0;
-        // controls = new PlayerActions();
         foreach (var position in tilemap.cellBounds.allPositionsWithin) {
             Vector3Int localPlace = new Vector3Int(position.x, position.y, position.z);
             if (!tilemap.HasTile(localPlace)) {
@@ -47,16 +43,14 @@ public class FighterAIAgent : Agent
             Vector3 place = tilemap.CellToWorld(localPlace);
             availablePlaces.Add(place);
             count++;
-            // Debug.Log(place);
         }
-        // Debug.Log(count);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         ActionSegment<float> continousActions = actionsOut.ContinuousActions;
         ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
-        if (playerID == 2){
+        if (playerID == 2) {
             continousActions[0] = Input.GetAxisRaw("Horizontal2");
             discreteActions[0] = Input.GetButton("Jump") ? 1 : 0;
             discreteActions[1] = Input.GetButton("Crouch") ? 1 : 0;
@@ -71,11 +65,6 @@ public class FighterAIAgent : Agent
             discreteActions[3] = Input.GetButton("Block2") ? 1 : 0;
             discreteActions[4] = Input.GetButton("Roll2") ? 1 : 0;
         }
-        // actionsOut[6] = Input.GetButton("Crouch") ? 0f : 1f;
-        // actionsOut[7] = Input.GetButton("Block") ? 0f : 1f;
-        // actionsOut[8] = Input.GetButton("Roll") ? 0f : 1f;
-        // actionsOut[9] = Input.GetButton("Jump") ? 0f : 1f;
-        // actionsOut[10] = Input.GetButton("Attack") ? 0f : 1f;
     }
 
     public override void OnEpisodeBegin()
@@ -89,11 +78,7 @@ public class FighterAIAgent : Agent
             enemy.localPosition = new Vector3(-5.8f, -3.8f, 0);
         }
         // distanceReward = 0.01f;
-<<<<<<< HEAD
-        // target.localPosition = new Vector3(Random.Range(-7f, 0f), Random.Range(4f, -3.7f), 0);
-=======
-        target.localPosition = new Vector3(-0.85f, -2.46f, 0);
->>>>>>> must_merge
+        // target.localPosition = new Vector3(-2.26f, 3.81f, 0);
         // actions = GetComponent<HeroKnightActions>();
         actions.Reset();
         timer.Reset();
@@ -101,11 +86,14 @@ public class FighterAIAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(target.localPosition);
-        sensor.AddObservation(enemy.localPosition);
+        sensor.AddObservation(transform.localPosition.x);
+        sensor.AddObservation(transform.localPosition.y);
+        // sensor.AddObservation(target.localPosition);
+        sensor.AddObservation(enemy.localPosition.x);
+        sensor.AddObservation(enemy.localPosition.y);
         foreach( Vector3 place in availablePlaces) {
-            sensor.AddObservation(place); /*67x3*/
+            sensor.AddObservation(place.x); /*67x2*/
+            sensor.AddObservation(place.y);
         }
         sensor.AddObservation(timer.timeLeft);
         sensor.AddObservation(actions.currentHealth);
@@ -118,7 +106,8 @@ public class FighterAIAgent : Agent
         sensor.AddObservation(enemyPlayer.m_crouch);
         sensor.AddObservation(enemyPlayer.m_roll);
         sensor.AddObservation(enemyPlayer.actions.currentHealth);
-        
+        float dist = Vector3.Distance(transform.localPosition, enemy.localPosition);
+        sensor.AddObservation(dist);
         
 
     }
@@ -127,10 +116,11 @@ public class FighterAIAgent : Agent
     {
         float moveX = actions.ContinuousActions[0];
         float jump = actions.DiscreteActions[0];
-        float crouch = 0f;
-        float attack = 0f;
-        float block = 0f;
+        float crouch = actions.DiscreteActions[1];
+        float attack = actions.DiscreteActions[2];
+        float block = actions.DiscreteActions[3];
         float roll = actions.DiscreteActions[4];
+        float passive = actions.DiscreteActions[5];
 
         inputX = moveX;
         if (jump == 0) m_jump = false;
@@ -138,13 +128,11 @@ public class FighterAIAgent : Agent
         if (block == 0) m_block = false;
         if (roll == 0) m_roll = false;
         if (crouch == 0) m_crouch = false;
+        if (passive == 0) m_passive = false;
 
         if (jump == 1) {
-            // Debug.Log("jump");
             m_jump = true;
             }
-        // transform.localPosition += new Vector3(moveX, 0, 0) * Time.deltaTime * moveSpeed;
-        // transform.localPosition += new Vector3(0, jump, 0) * Time.deltaTime * jumpHeight;
         if (attack == 1 && !m_attack) {
             // Debug.Log("Attack");
             m_attack = true;
@@ -161,6 +149,9 @@ public class FighterAIAgent : Agent
             // Debug.Log("roll");
             m_roll = true;
         }
+        if (passive == 1 && !m_passive) {
+            m_passive = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -169,7 +160,7 @@ public class FighterAIAgent : Agent
             Debug.Log("Hit wall");
             SetReward(-1f);
             // otherScript.SetReward(+1f);
-            // otherScript.EndEpisode();
+            otherScript.EndEpisode();
             EndEpisode();
         } 
         if (other.TryGetComponent<Goal>(out Goal goal)) {
@@ -186,23 +177,12 @@ public class FighterAIAgent : Agent
     {
         Collider2D enemy = Physics2D.OverlapBox(actions.m_swordHitBox.position, actions.m_swordHitBox.localScale, 0.0f, actions.enemyLayer);
         actions.faceDirection(inputX);
-        float boundsWidth = (background.bounds.max - background.bounds.min).magnitude;
-        float dist = 1 - Vector3.Distance(target.transform.localPosition, transform.localPosition)/boundsWidth;
-<<<<<<< HEAD
-        // AddReward(dist*distanceReward);
-        
-        
-        
-=======
-        AddReward(dist*distanceReward);
         
         
         Vector3 sword = actions.m_swordHitBox.position;
->>>>>>> must_merge
 
         // Move
         if (!actions.m_rolling && actions.m_timeSinceAttack > 0.25f){
-            // Debug.Log(m_knockback);
             actions.m_body2d.velocity = new Vector2(inputX * actions.m_speed, actions.m_body2d.velocity.y);
         }
         if (actions.m_rolling) 
@@ -219,9 +199,7 @@ public class FighterAIAgent : Agent
         {
             if (m_attack && actions.m_timeSinceAttack > 0.25f)
             {
-                // Debug.Log("Attacked at: " + sword + " ENEMY AT: " + target.transform.position);
                 actions.attack(enemy);
-                // m_attack = false;
             }
             else if (m_crouch && actions.m_grounded) 
             {
@@ -241,9 +219,7 @@ public class FighterAIAgent : Agent
             }
             else if (m_jump && actions.m_grounded && !m_attack)
             {
-                // m_jump = false;
                 actions.jump();
-                // Debug.Log("reached");
             }
             else if (Mathf.Abs(inputX) > Mathf.Epsilon)
             {
@@ -260,13 +236,8 @@ public class FighterAIAgent : Agent
         }
         // if grounded and blocking or crouching don't move
         if (actions.m_grounded && (actions.m_animator.GetBool("IdleBlock") || actions.m_animator.GetBool("Crouch") )){
-            // Debug.Log(m_animator.GetBool("Crouch") );
             actions.m_body2d.velocity = new Vector2(0, actions.m_body2d.velocity.y);
         }
-        // if (actions.currentHealth <= 0) {
-        //     SetReward(-1f);
-        //     EndEpisode();
-        // }
 
     }
 

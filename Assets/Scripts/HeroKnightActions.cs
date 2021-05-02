@@ -32,20 +32,12 @@ public class HeroKnightActions : MonoBehaviour
     public bool                finished;
     public float               m_knockback = 2.0f;
     public float               m_knockback_cooldown = 0.5f;
-<<<<<<< HEAD
-    private float jump_reward = 0f;
-    private float attack_reward = 0f;
-    public float block_reward = 0f;
-    private float crouch_reward = 0f;
-    private float roll_reward = 0f;
-=======
     private float jump_reward = 0.00f;
-    private float attack_reward = 0.0f;
+    private float attack_reward = 0.01f;
     public float block_reward = 0.00f;
     private float crouch_reward = 0f;
     private float roll_reward = 0f;
-    private float damageTakenReward = -0.0f;
->>>>>>> must_merge
+    private float damageTakenReward = -0.01f;
     public Timer timer;
 
     public float sword_height;
@@ -383,9 +375,6 @@ public class HeroKnightActions : MonoBehaviour
     }
 
     public void TakeDamage(int damage) {
-        // if (playerNum == parentScript.playerID) {
-            parentScript.giveReward(damageTakenReward); 
-        // }
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         if (currentHealth > 0)
@@ -395,8 +384,13 @@ public class HeroKnightActions : MonoBehaviour
             // parentScript.giveReward(-1f);
             StartCoroutine(DieRoutine());
             
+        } else {
+            parentScript.giveReward(-1 * (1 - currentHealth/maxHealth)/100);
+            FighterAIAgent enemyPlayer = enemy.GetComponent<FighterAIAgent>();
+            if (enemyPlayer.actions.currentHealth > currentHealth)
+                enemyPlayer.giveReward((enemyPlayer.actions.currentHealth - currentHealth)/100);
         }
-
+        
     }
 
     IEnumerator DieRoutine()
@@ -411,16 +405,9 @@ public class HeroKnightActions : MonoBehaviour
         yield return new WaitForSeconds(1);
         Debug.Log("PLAYER " + playerNum + " WINS");
         FighterAIAgent enemyPlayer = enemy.GetComponent<FighterAIAgent>();
-        // if (playerNum == 2) {
-        //     FighterAIAgent script = GetComponent<FighterAIAgent>();
-        //     script.SetReward(+1f);
-        // } else {
-        //     FighterAIAgent script = GetComponent<FighterAIAgent>();
-        //     script.SetReward(-1f);
-        // }
-        // if (playerNum == parentScript.playerID) {
         parentScript.SetReward(-1f);
-        enemyPlayer.SetReward(+1f);
+        float time = timer.getTime();
+        enemyPlayer.AddReward(+1f + time/90);
         // } 
         timer.Reset();
 
